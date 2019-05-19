@@ -14,7 +14,7 @@
 		202DD4A0229137570052F804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202DD49E229137570052F804 /* LaunchScreen.storyboard */; };
 		202DD4AB229137580052F804 /* TweetsFeltTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4AA229137580052F804 /* TweetsFeltTests.swift */; };
 		202DD4B6229137580052F804 /* TweetsFeltUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4B5229137580052F804 /* TweetsFeltUITests.swift */; };
-		202DD4CD229152EE0052F804 /* HttpVerbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4CC229152EE0052F804 /* HttpVerbs.swift */; };
+		202DD4CD229152EE0052F804 /* TimelineRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4CC229152EE0052F804 /* TimelineRequestParams.swift */; };
 		202DD4D12291532D0052F804 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D02291532D0052F804 /* Endpoint.swift */; };
 		202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D3229162140052F804 /* NetworkProtocol.swift */; };
 		202DD4D62291628A0052F804 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D52291628A0052F804 /* NetworkClient.swift */; };
@@ -65,7 +65,7 @@
 		202DD4B1229137580052F804 /* TweetsFeltUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetsFeltUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		202DD4B5229137580052F804 /* TweetsFeltUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsFeltUITests.swift; sourceTree = "<group>"; };
 		202DD4B7229137580052F804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		202DD4CC229152EE0052F804 /* HttpVerbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpVerbs.swift; sourceTree = "<group>"; };
+		202DD4CC229152EE0052F804 /* TimelineRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRequestParams.swift; sourceTree = "<group>"; };
 		202DD4D02291532D0052F804 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		202DD4D3229162140052F804 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		202DD4D52291628A0052F804 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 		202DD4CB229152D80052F804 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				202DD4CC229152EE0052F804 /* HttpVerbs.swift */,
+				202DD4CC229152EE0052F804 /* TimelineRequestParams.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -507,7 +507,7 @@
 				202DD498229137570052F804 /* ViewController.swift in Sources */,
 				202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */,
 				204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */,
-				202DD4CD229152EE0052F804 /* HttpVerbs.swift in Sources */,
+				202DD4CD229152EE0052F804 /* TimelineRequestParams.swift in Sources */,
 				202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */,
 				204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */,
 				202DD4D12291532D0052F804 /* Endpoint.swift in Sources */,

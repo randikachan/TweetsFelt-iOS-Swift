@@ -8,9 +8,12 @@
 
 import Foundation
 
-enum HTTP_VERB: String {
-    case GET
-    case POST
-    case PUT
-    case DELETE
+enum TimelineRequestParams: String {
+ 
+    case screen_name
+    case trim_user
+    case exclude_replies
+    case include_rts
+    case count
+
 }

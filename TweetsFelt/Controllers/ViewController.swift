@@ -34,11 +34,18 @@ class ViewController: UIViewController {
 //
 //        }
         
-        twitterAPIService.fetchUserTimelineFor(screen_name: "randikachan", bearerToken: "AAAAAAAAAAAAAAAAAAAAANgB%2BgAAAAAA%2FGFWqt%2Fha2t1%2BfwJAgoLxTEEGBQ%3DLK59a8a7Qqm89mSeIHw1UJh0GivM7BYBJdfi0gSJNsDl40H9Vs") { (json, jsonError) in
+        var requestParams: [TimelineRequestParams: Any] = [.screen_name : "randikachan"]
+            requestParams[.trim_user] = true
+            requestParams[.exclude_replies] = true
+            requestParams[.include_rts] = false
+            requestParams[.count] = 20
+        
+        
+        twitterAPIService.fetchUserTimelineFor(requestData: requestParams) { (json, jsonError) in
             
             let apiResponse = Mapper<Tweet>().mapArray(JSONObject: json)
             
-            print("apiResponse: \(apiResponse?[0].user!.userIdStr)")
+            print("apiResponse: \(apiResponse?.count)")
 
         }
     }
