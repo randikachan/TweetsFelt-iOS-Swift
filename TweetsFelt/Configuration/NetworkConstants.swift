@@ -15,4 +15,5 @@ enum NetworkConstants: String {
     // Twitter Endpoints
     case ENDPOINT_ACCESS_TOKEN = "oauth2/token"
     case ENDPOINT_INVALIDATE_TOKEN = "oauth2/invalidate_token"
+    case ENDPOINT_USER_TIMELINE_STATUSES = "1.1/statuses/user_timeline.json"
 }

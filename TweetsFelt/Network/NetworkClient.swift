@@ -14,7 +14,7 @@ class NetworkClient: NetworkProtocol {
     func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse) {
         let urlRequest = endpoint.createRequest()
         
-        // print("Request debugDescription: \(urlRequest.debugDescription)")
+        print("Request debugDescription: \(urlRequest.debugDescription)")
         
         urlRequest.validate().responseJSON { response in
             DispatchQueue.main.async {

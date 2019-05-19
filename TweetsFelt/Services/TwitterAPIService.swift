@@ -8,11 +8,14 @@
 
 import Foundation
 import Alamofire
+import Keys
 
 class TwitterAPIService : NetworkClient {
     
     // MARK: - Singleton
     static let shared = TwitterAPIService()
+    
+    let keys = TweetsFeltKeys()
     
     func generateAuthenticationHeaders(api_key: String, api_secret: String) -> [String: String] {
         let credentials = "\(api_key):\(api_secret)".data(using: .utf8)!
@@ -34,6 +37,7 @@ class TwitterAPIService : NetworkClient {
     }
     
     func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping WebServiceResponse) {
+        
         var headers = generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret)
         headers["Accept"] = "*/*"
         
@@ -41,6 +45,27 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_INVALIDATE_TOKEN.rawValue,
                                 httpMethod: .post,
                                 parameters: ["access_token": "\(bearerToken)"],
+                                headers: headers)
+        
+        execute(endpoint, completion: completion)
+    }
+    
+    func fetchUserTimelineFor(screen_name: String, bearerToken: String, completion: @escaping WebServiceResponse) {
+        
+        var headers: [String: String] = [:]
+        headers["Accept"] = "*/*"
+        headers["Connection"] = "close"
+        headers["User-Agent"] = "OAuth gem v0.4.4"
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        headers["Authorization"] = "Bearer \(bearerToken)"
+        
+        var parameters: [String: Any] = ["screen_name": screen_name]
+        parameters["count"] = 2
+        
+        let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
+                                path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
+                                httpMethod: .get,
+                                parameters: parameters,
                                 headers: headers)
         
         execute(endpoint, completion: completion)
