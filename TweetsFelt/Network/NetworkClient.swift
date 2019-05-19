@@ -11,6 +11,8 @@ import Alamofire
 
 class NetworkClient: NetworkProtocol {
 
+    private let enable_logs = false
+    
     func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse) {
         let urlRequest = endpoint.createRequest()
         
@@ -30,13 +32,21 @@ class NetworkClient: NetworkProtocol {
                         jsonError?.error = response.error
                         completion(nil, jsonError)
                     }
-                    print("JSON ERROR: \(error.localizedDescription)")
+                    
+                    if self.enable_logs {
+                        print("JSON ERROR: \(error.localizedDescription)")
+                    }
                 } else if let jsonArray = response.result.value as? [[String: Any]] {
                     completion(jsonArray, nil)
-                    print("JSON ARR: \(jsonArray)")
+                    
+                    if self.enable_logs {
+                        print("JSON ARR: \(jsonArray)")
+                    }
                 } else if let jsonDict = response.result.value as? [String: Any] {
                     completion([jsonDict], nil)
-                    print("JSON Dict: \(jsonDict)")
+                    if self.enable_logs {
+                        print("JSON Dict: \(jsonDict)")
+                    }
                 }
             }
         }

@@ -25,6 +25,8 @@
 		204C66A222918F9400CBAA2D /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66A122918F9400CBAA2D /* NetworkConstants.swift */; };
 		204C66A42291B21500CBAA2D /* TwitterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66A32291B21500CBAA2D /* TwitterError.swift */; };
 		204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AB2292004A00CBAA2D /* TwitterUser.swift */; };
+		204C66AE2292038400CBAA2D /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AD2292038400CBAA2D /* Tweet.swift */; };
+		204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AF2292046700CBAA2D /* TwitterTimeline.swift */; };
 		598916D68F806269C8EC8DCC /* Pods_TweetsFeltTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6D16C76650C2A6F7553F5 /* Pods_TweetsFeltTests.framework */; };
 		BA37EB5689EA37429DDBCEF4 /* Pods_TweetsFelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */; };
 		FFF548FF9F6EB05EE1FD8A36 /* Pods_TweetsFeltUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F78B7FFD21B892FBD5E91B /* Pods_TweetsFeltUITests.framework */; };
@@ -74,6 +76,8 @@
 		204C66A122918F9400CBAA2D /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		204C66A32291B21500CBAA2D /* TwitterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterError.swift; sourceTree = "<group>"; };
 		204C66AB2292004A00CBAA2D /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
+		204C66AD2292038400CBAA2D /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		204C66AF2292046700CBAA2D /* TwitterTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
 		3D6052042E34386E016EEE3C /* Pods-TweetsFeltUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltUITests/Pods-TweetsFeltUITests.release.xcconfig"; sourceTree = "<group>"; };
 		471C747908C849791358E300 /* Pods-TweetsFeltTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltTests/Pods-TweetsFeltTests.release.xcconfig"; sourceTree = "<group>"; };
 		58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweetsFelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +229,8 @@
 				202DD4D02291532D0052F804 /* Endpoint.swift */,
 				204C66A32291B21500CBAA2D /* TwitterError.swift */,
 				204C66AB2292004A00CBAA2D /* TwitterUser.swift */,
+				204C66AD2292038400CBAA2D /* Tweet.swift */,
+				204C66AF2292046700CBAA2D /* TwitterTimeline.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -497,8 +503,10 @@
 				204C66A42291B21500CBAA2D /* TwitterError.swift in Sources */,
 				204C66A222918F9400CBAA2D /* NetworkConstants.swift in Sources */,
 				202DD4DF22917EAB0052F804 /* Keys.framework in Sources */,
+				204C66AE2292038400CBAA2D /* Tweet.swift in Sources */,
 				202DD498229137570052F804 /* ViewController.swift in Sources */,
 				202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */,
+				204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */,
 				202DD4CD229152EE0052F804 /* HttpVerbs.swift in Sources */,
 				202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */,
 				204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */,

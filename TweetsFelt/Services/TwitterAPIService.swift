@@ -53,16 +53,16 @@ class TwitterAPIService : NetworkClient {
     func fetchUserTimelineFor(screen_name: String, bearerToken: String, completion: @escaping WebServiceResponse) {
         
         var headers: [String: String] = [:]
-        headers["Accept"] = "*/*"
-        headers["Connection"] = "close"
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
-        headers["Authorization"] = "Bearer \(bearerToken)"
+            headers["Accept"] = "*/*"
+            headers["Connection"] = "close"
+            headers["Content-Type"] = "application/x-www-form-urlencoded"
+            headers["Authorization"] = "Bearer \(bearerToken)"
         
         var parameters: [String: Any] = ["screen_name": screen_name]
             parameters["trim_user"] = true
             parameters["exclude_replies"] = true
             parameters["include_rts"] = false
-            parameters["count"] = 2
+            parameters["count"] = 20
         
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
