@@ -16,6 +16,10 @@
 		202DD4B6229137580052F804 /* TweetsFeltUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4B5229137580052F804 /* TweetsFeltUITests.swift */; };
 		202DD4CD229152EE0052F804 /* HttpVerbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4CC229152EE0052F804 /* HttpVerbs.swift */; };
 		202DD4D12291532D0052F804 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D02291532D0052F804 /* Endpoint.swift */; };
+		202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D3229162140052F804 /* NetworkProtocol.swift */; };
+		202DD4D62291628A0052F804 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D52291628A0052F804 /* NetworkClient.swift */; };
+		202DD4D8229163210052F804 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202DD4D7229163210052F804 /* Alamofire.framework */; };
+		202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D9229167380052F804 /* TwitterAPIService.swift */; };
 		598916D68F806269C8EC8DCC /* Pods_TweetsFeltTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6D16C76650C2A6F7553F5 /* Pods_TweetsFeltTests.framework */; };
 		BA37EB5689EA37429DDBCEF4 /* Pods_TweetsFelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */; };
 		FFF548FF9F6EB05EE1FD8A36 /* Pods_TweetsFeltUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F78B7FFD21B892FBD5E91B /* Pods_TweetsFeltUITests.framework */; };
@@ -56,6 +60,10 @@
 		202DD4B7229137580052F804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		202DD4CC229152EE0052F804 /* HttpVerbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpVerbs.swift; sourceTree = "<group>"; };
 		202DD4D02291532D0052F804 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		202DD4D3229162140052F804 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		202DD4D52291628A0052F804 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		202DD4D7229163210052F804 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		202DD4D9229167380052F804 /* TwitterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterAPIService.swift; sourceTree = "<group>"; };
 		3D6052042E34386E016EEE3C /* Pods-TweetsFeltUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltUITests/Pods-TweetsFeltUITests.release.xcconfig"; sourceTree = "<group>"; };
 		471C747908C849791358E300 /* Pods-TweetsFeltTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltTests/Pods-TweetsFeltTests.release.xcconfig"; sourceTree = "<group>"; };
 		58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweetsFelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202DD4D8229163210052F804 /* Alamofire.framework in Frameworks */,
 				BA37EB5689EA37429DDBCEF4 /* Pods_TweetsFelt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +127,7 @@
 		202DD494229137570052F804 /* TweetsFelt */ = {
 			isa = PBXGroup;
 			children = (
+				202DD4D2229161570052F804 /* Network */,
 				202DD4C7229151DD0052F804 /* AppDelegate */,
 				202DD4C32291516D0052F804 /* Configuration */,
 				202DD4C42291517F0052F804 /* Controllers */,
@@ -208,6 +218,7 @@
 		202DD4CA2291523D0052F804 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				202DD4D9229167380052F804 /* TwitterAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +229,15 @@
 				202DD4CC229152EE0052F804 /* HttpVerbs.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		202DD4D2229161570052F804 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				202DD4D3229162140052F804 /* NetworkProtocol.swift */,
+				202DD4D52291628A0052F804 /* NetworkClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		78359873AECA8A4954DD0723 /* Pods */ = {
@@ -236,6 +256,7 @@
 		89CE0C28E061674B2ACA97C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				202DD4D7229163210052F804 /* Alamofire.framework */,
 				58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */,
 				F3D6D16C76650C2A6F7553F5 /* Pods_TweetsFeltTests.framework */,
 				E1F78B7FFD21B892FBD5E91B /* Pods_TweetsFeltUITests.framework */,
@@ -454,9 +475,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				202DD498229137570052F804 /* ViewController.swift in Sources */,
+				202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */,
 				202DD4CD229152EE0052F804 /* HttpVerbs.swift in Sources */,
+				202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */,
 				202DD4D12291532D0052F804 /* Endpoint.swift in Sources */,
 				202DD496229137570052F804 /* AppDelegate.swift in Sources */,
+				202DD4D62291628A0052F804 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6Z3KXRJRZ;
-				INFOPLIST_FILE = TweetsFelt/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TweetsFelt/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +677,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6Z3KXRJRZ;
-				INFOPLIST_FILE = TweetsFelt/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TweetsFelt/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

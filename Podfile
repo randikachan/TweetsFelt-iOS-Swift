@@ -6,7 +6,7 @@ target 'TweetsFelt' do
   use_frameworks!
 
   # Pods for TweetsFelt
-  pod 'Alamofire', '~> 5.0.0-beta.6'
+  pod 'Alamofire', '~> 4.8.2'
 
   target 'TweetsFeltTests' do
     inherit! :search_paths
