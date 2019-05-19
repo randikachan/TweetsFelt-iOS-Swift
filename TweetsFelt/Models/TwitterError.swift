@@ -7,15 +7,45 @@
 //
 
 import Foundation
+import ObjectMapper
 /**
+ // Following is an example of structured JSON Twitter Error response
+
  {
-     "errors": [
+     "error": [
          {
              "code": 348,
              "message": "Client application is not permitted to to invalidate this token."
          }
      ]
  }
- /
+ */
 
- 
+class TwitterError: Mappable {
+    
+    var code: Int?
+    var message: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        code    <- map["code"]
+        message <- map["message"]
+    }
+}
+
+class TwitterErrorResponse: Mappable {
+    
+    var errors: [TwitterError]?
+    var error: Error?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        errors <- map["errors"]
+    }
+}

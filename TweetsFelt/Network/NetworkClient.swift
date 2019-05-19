@@ -19,7 +19,17 @@ class NetworkClient: NetworkProtocol {
         urlRequest.validate().responseJSON { response in
             DispatchQueue.main.async {
                 if let error = response.error {
-                    completion(nil, error)
+                    var responseString: String
+                    if response.data != nil {
+                        responseString = String(data: response.data!, encoding: String.Encoding.utf8) ?? ""
+                        let jsonError = TwitterErrorResponse(JSONString: responseString)
+                        jsonError?.error = response.error
+                        completion(nil, jsonError)
+                    } else {
+                        let jsonError = TwitterErrorResponse(JSONString: "")
+                        jsonError?.error = response.error
+                        completion(nil, jsonError)
+                    }
                     print("JSON ERROR: \(error.localizedDescription)")
                 } else if let jsonArray = response.result.value as? [[String: Any]] {
                     completion(jsonArray, nil)

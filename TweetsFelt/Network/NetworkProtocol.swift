@@ -11,7 +11,7 @@ import Foundation
 protocol NetworkProtocol {
 
     // WebServiceResponse Typealias
-    typealias WebServiceResponse = ([[String: Any]]?, Error?) -> Void
+    typealias WebServiceResponse = ([[String: Any]]?, TwitterErrorResponse?) -> Void
     
     func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse)
 
