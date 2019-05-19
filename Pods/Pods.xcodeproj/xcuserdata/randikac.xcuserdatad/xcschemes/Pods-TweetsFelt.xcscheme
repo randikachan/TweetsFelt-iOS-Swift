@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D93D7A5EB50631B49B99B4A542D6585"
+               BlueprintIdentifier = "3B2887BEBB644455E65CFD0D33D1C084"
                BuildableName = "Pods_TweetsFelt.framework"
                BlueprintName = "Pods-TweetsFelt"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D93D7A5EB50631B49B99B4A542D6585"
+            BlueprintIdentifier = "3B2887BEBB644455E65CFD0D33D1C084"
             BuildableName = "Pods_TweetsFelt.framework"
             BlueprintName = "Pods-TweetsFelt"
             ReferencedContainer = "container:Pods.xcodeproj">

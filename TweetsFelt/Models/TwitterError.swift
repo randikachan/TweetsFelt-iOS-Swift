@@ -7,3 +7,15 @@
 //
 
 import Foundation
+/**
+ {
+     "errors": [
+         {
+             "code": 348,
+             "message": "Client application is not permitted to to invalidate this token."
+         }
+     ]
+ }
+ /
+
+ 

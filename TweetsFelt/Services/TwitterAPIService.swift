@@ -55,7 +55,6 @@ class TwitterAPIService : NetworkClient {
         var headers: [String: String] = [:]
         headers["Accept"] = "*/*"
         headers["Connection"] = "close"
-        headers["User-Agent"] = "OAuth gem v0.4.4"
         headers["Content-Type"] = "application/x-www-form-urlencoded"
         headers["Authorization"] = "Bearer \(bearerToken)"
         

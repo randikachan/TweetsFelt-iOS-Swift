@@ -7,6 +7,7 @@ target 'TweetsFelt' do
 
   # Pods for TweetsFelt
   pod 'Alamofire', '~> 4.8.2'
+  pod 'ObjectMapper', '~> 3.4'
 
   target 'TweetsFeltTests' do
     inherit! :search_paths
