@@ -7,21 +7,50 @@
 //
 
 import XCTest
+import ObjectMapper
 @testable import TweetsFelt
 
 class TweetsFeltTests: XCTestCase {
 
+    var sut: TwitterAPIService!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        sut = TwitterAPIService.shared
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFetchUserTimelineSuccess() {
+        // 1. given
+        var requestParams: [TimelineRequestParams: Any] = [.screen_name : "randikachan"]
+            requestParams[.trim_user] = true        // Send less user details
+            requestParams[.exclude_replies] = true  // Exclude Reply tweets
+            requestParams[.include_rts] = false     // Except Retweets
+            requestParams[.count] = 20               // out of first 20 tweets
+        
+        let promise = expectation(description: "Have at least 1 Tweet in the Timeline for the given screen_name: randikachan")
+        
+        // 2. when
+            sut.fetchUserTimelineFor(requestData: requestParams) { (json, jsonError) in
+            
+            // 3. then
+                if let error = jsonError {
+                    XCTFail("Error: \(error.error?.localizedDescription)")
+                    return
+                } else if let response = Mapper<Tweet>().mapArray(JSONObject: json) {
+                    if response.count > 1 {
+                        print("Tweets Count: \(response.count)")
+                        promise.fulfill()
+                    } else {
+                        XCTFail("Insufficient Tweets Count: \(response.count)")
+                    }
+                }
+            }
+        
+        // 3
+        wait(for: [promise], timeout: 5)
     }
 
     func testPerformanceExample() {
