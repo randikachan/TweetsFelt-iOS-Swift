@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 //
 //        }
         
-        twitterAPIService.fetchUserTimelineFor(screen_name: "raaasdfasdndikachan", bearerToken: "AAAAAAAAAAAAAAAAAAAAANgB%2BgAAAAAA%2FGFWqt%2Fha2t1%2BfwJAgoLxTEEGBQ%3DLK59a8a7Qqm89mSeIHw1UJh0GivM7BYBJdfi0gSJNsDl40H9Vs") { (json, jsonError) in
+        twitterAPIService.fetchUserTimelineFor(screen_name: "randikachan", bearerToken: "AAAAAAAAAAAAAAAAAAAAANgB%2BgAAAAAA%2FGFWqt%2Fha2t1%2BfwJAgoLxTEEGBQ%3DLK59a8a7Qqm89mSeIHw1UJh0GivM7BYBJdfi0gSJNsDl40H9Vs") { (json, jsonError) in
 
             print("completed 1: \(jsonError?.error?.localizedDescription)")
             

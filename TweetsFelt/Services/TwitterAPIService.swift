@@ -59,7 +59,10 @@ class TwitterAPIService : NetworkClient {
         headers["Authorization"] = "Bearer \(bearerToken)"
         
         var parameters: [String: Any] = ["screen_name": screen_name]
-        parameters["count"] = 2
+            parameters["trim_user"] = true
+            parameters["exclude_replies"] = true
+            parameters["include_rts"] = false
+            parameters["count"] = 2
         
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
