@@ -14,6 +14,6 @@ class TwitterAPIService : NetworkClient {
     static let shared = TwitterAPIService()
     
     func getBearerToken(endpoint: Endpoint, completion: @escaping WebServiceResponse) {
-        execute(.POST, url: endpoint.url, completion: completion)
+        execute(endpoint, completion: completion)
     }
 }

@@ -7,18 +7,31 @@
 //
 
 import Foundation
+import Alamofire
 
-struct Endpoint {
+class Endpoint {
     
     let url: URL
     let path: String?
-    let httpMethod: HTTP_VERB
-    let parameters: [String: String]
+    let httpMethod: HTTPMethod
+    let parameters: Parameters
+    let headers: HTTPHeaders
     
-    init(url: URL, path: String? = nil, httpMethod: HTTP_VERB = .GET, parameters: [String: String] = [:]) {
+    init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders) {
         self.url = url
         self.path = path
         self.httpMethod = httpMethod
         self.parameters = parameters
+        self.headers = headers
+    }
+    
+    func createRequest() -> DataRequest {
+        let url = self.path.map({ self.url.appendingPathComponent($0) }) ?? self.url
+        
+        return Alamofire.request(url,
+                                 method: self.httpMethod,
+                                 parameters: parameters,
+                                 encoding: URLEncoding.queryString,
+                                 headers: headers)
     }
 }

@@ -11,11 +11,10 @@ import Alamofire
 
 class NetworkClient: NetworkProtocol {
 
-    func execute(_ httpMethod: HTTP_VERB, url: URL, completion: @escaping WebServiceResponse) {
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = httpMethod.rawValue
+    func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse) {
+        let urlRequest = endpoint.createRequest()
         
-        Alamofire.request(url).validate().responseJSON { response in
+        urlRequest.validate().responseJSON { response in
             DispatchQueue.main.async {
                 if let error = response.error {
                     completion(nil, error)

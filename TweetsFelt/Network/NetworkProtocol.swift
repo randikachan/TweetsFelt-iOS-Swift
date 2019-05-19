@@ -13,6 +13,6 @@ protocol NetworkProtocol {
     // WebServiceResponse Typealias
     typealias WebServiceResponse = ([[String: Any]]?, Error?) -> Void
     
-    func execute(_ httpMethod: HTTP_VERB, url: URL, completion: @escaping WebServiceResponse)
+    func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse)
 
 }
