@@ -17,7 +17,7 @@ class Endpoint {
     let parameters: Parameters
     let headers: HTTPHeaders
     
-    init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders) {
+    init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:]) {
         self.url = url
         self.path = path
         self.httpMethod = httpMethod
@@ -39,7 +39,7 @@ class Endpoint {
         let request: DataRequest = Alamofire.request(url,
                                                      method: self.httpMethod,
                                                      parameters: parameters,
-                                                     encoding: URLEncoding.queryString,
+                                                     encoding: encodingType,
                                                      headers: headers)
         
         print("Request: \(request.consoleLog())")
