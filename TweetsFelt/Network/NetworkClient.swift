@@ -18,10 +18,13 @@ class NetworkClient: NetworkProtocol {
             DispatchQueue.main.async {
                 if let error = response.error {
                     completion(nil, error)
+                    print("JSON ERROR: \(error.localizedDescription)")
                 } else if let jsonArray = response.result.value as? [[String: Any]] {
                     completion(jsonArray, nil)
+                    print("JSON ARR: \(jsonArray)")
                 } else if let jsonDict = response.result.value as? [String: Any] {
                     completion([jsonDict], nil)
+                    print("JSON Dict: \(jsonDict)")
                 }
             }
         }

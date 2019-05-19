@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import Keys
 
 class Endpoint {
     
@@ -17,7 +16,6 @@ class Endpoint {
     let httpMethod: HTTPMethod
     let parameters: Parameters
     let headers: HTTPHeaders
-    let keys = TweetsFeltKeys()
     
     init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders) {
         self.url = url
@@ -30,10 +28,28 @@ class Endpoint {
     func createRequest() -> DataRequest {
         let url = self.path.map({ self.url.appendingPathComponent($0) }) ?? self.url
         
-        return Alamofire.request(url,
-                                 method: self.httpMethod,
-                                 parameters: parameters,
-                                 encoding: URLEncoding.queryString,
-                                 headers: headers)
+        let encodingType : URLEncoding
+        
+        if self.httpMethod == .get {
+            encodingType = URLEncoding.queryString
+        } else {
+            encodingType = URLEncoding.methodDependent
+        }
+        
+        let request: DataRequest = Alamofire.request(url,
+                                                     method: self.httpMethod,
+                                                     parameters: parameters,
+                                                     encoding: URLEncoding.queryString,
+                                                     headers: headers)
+        
+        print("Request: \(request.consoleLog())")
+        
+        return request
+    }
+}
+
+extension DataRequest {
+    public func consoleLog() -> Self {
+        return self
     }
 }
