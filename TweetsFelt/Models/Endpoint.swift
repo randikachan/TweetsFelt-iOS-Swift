@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Keys
 
 class Endpoint {
     
@@ -16,6 +17,7 @@ class Endpoint {
     let httpMethod: HTTPMethod
     let parameters: Parameters
     let headers: HTTPHeaders
+    let keys = TweetsFeltKeys()
     
     init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders) {
         self.url = url

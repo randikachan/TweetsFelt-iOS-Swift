@@ -17,5 +17,12 @@ target 'TweetsFelt' do
     inherit! :search_paths
     # Pods for testing
   end
+  
+  plugin 'cocoapods-keys', {
+      :project => "TweetsFelt",
+      :keys => [
+        "TwitterConsumerAPIKey",
+        "TwitterConsumerAPISecret"
+      ]}
 
 end
