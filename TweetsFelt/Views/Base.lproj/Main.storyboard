@@ -25,6 +25,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Dui-DS-Nce">
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RZP-jr-Evh"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-iF-ON6">
                                 <rect key="frame" x="0.0" y="76" width="375" height="591"/>
@@ -64,6 +67,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="eDw-Wh-hb0" id="kb5-3w-eSX"/>
+                        <outlet property="searchBar" destination="Dui-DS-Nce" id="5Qh-Ur-v5O"/>
                         <outlet property="tableView" destination="mNn-iF-ON6" id="laU-EW-s0T"/>
                     </connections>
                 </viewController>

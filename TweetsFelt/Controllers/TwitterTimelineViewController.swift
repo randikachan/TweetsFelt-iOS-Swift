@@ -11,15 +11,20 @@ import UIKit
 import Keys
 import ObjectMapper
 
-class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TwitterTimelineViewController: UIViewController {
 
     let keys = TweetsFeltKeys()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    
-    var tweetsArr: [Tweet] = []
+    @IBOutlet weak var searchBar: UISearchBar!
+    var searchResultTweetsArr: [Tweet] = []
     let sentimentEmojisArr: Array<String> = ["😃", "😐", "😟"]
+    
+    lazy var tapRecognizer: UITapGestureRecognizer = {
+        var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
+        return recognizer
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,35 +46,33 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
             if let token = tokenObject?.access_token {
                 AppPreferenceService.shared.saveBearerToken(bearerToken: token)
             }
-        }
-        
-        twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: "randikachan")) { (tweetObj, tweetsArr, jsonError) in
             self.activityIndicator.isHidden = true
-            self.tableView.isHidden = false
-            
-            self.tweetsArr = tweetsArr!
-            self.tableView.reloadData()
         }
         
     }
-    
+}
+
+// MARK: - UITableView
+
+extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDelegate {
+
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tweetsArr.count
+        return self.searchResultTweetsArr.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
-
+        
         // At this point, the didSet block will set up the cell's views
         cell.sentimentThumbLbl.text = sentimentEmojisArr[0]
         cell.sentimentThumbLbl.backgroundColor = UIColor.clear
         
         cell.tweetTextLbl.backgroundColor = UIColor.clear
-        cell.tweetTextLbl.text = self.tweetsArr[indexPath.item].text
+        cell.tweetTextLbl.text = self.searchResultTweetsArr[indexPath.item].text
         
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         
@@ -88,7 +91,6 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("lajsdlflaksjdflkajsdflkjas")
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
