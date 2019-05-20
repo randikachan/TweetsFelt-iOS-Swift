@@ -16,17 +16,18 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        dismissKeyboard()
-        self.tableView.isHidden = true
-        self.activityIndicator.isHidden = false
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        initializeSearchVC()
         
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            setupErrorneousSearchVCWith(statusLabel: "Please enter a valid screen name to view its Timeline!")
+            return
+        }
         
+        // Fetch Twitter timeline for the given screenname
         let twitterAPIService = TwitterAPIService.shared
         twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: searchText)) { (tweetObj, tweetsArr, errorResponse) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            self.activityIndicator.isHidden = true
+            // Clear out the Search VC
+            self.setupErrorneousSearchVCWith(statusLabel: "")
             
             if let tweetsArray = tweetsArr {
                 self.searchResultTweetsArr = tweetsArray
@@ -34,11 +35,11 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
                 self.tableView.reloadData()
                 self.tableView.setContentOffset(CGPoint.zero, animated: false)
             } else if errorResponse != nil {
-                self.tableView.isHidden = true
                 if errorResponse?.errors?[0] != nil {
-                    
+                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.errors?[0].message)!)
                 } else if errorResponse?.error != nil {
                     print("Search error: " + (errorResponse?.error?.localizedDescription)!)
+                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)
                 }
             }
         }
@@ -55,4 +56,23 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         view.removeGestureRecognizer(tapRecognizer)
     }
+    
+    // Custom helper methods
+    
+    // Setup search VC state prior to the search query happens
+    func initializeSearchVC() {
+        dismissKeyboard()
+        self.tableView.isHidden = true
+        self.activityIndicator.isHidden = false
+        self.statusLbl.text = ""
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    // Finish up search VC state after a search query
+    func setupErrorneousSearchVCWith(statusLabel: String) {
+        self.tableView.isHidden = true
+        self.activityIndicator.isHidden = true
+        self.statusLbl.text = statusLabel
+    }
+
 }

@@ -18,6 +18,9 @@ class TwitterTimelineViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var statusLbl: UILabel!
+    
+    
     var searchResultTweetsArr: [Tweet] = []
     let sentimentEmojisArr: Array<String> = ["😃", "😐", "😟"]
     
@@ -29,26 +32,35 @@ class TwitterTimelineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register the TableViewCell Nib files
         let tableViewCellNib: UINib = UINib(nibName: "TweetTableViewCell", bundle: nil)
         self.tableView.register(tableViewCellNib, forCellReuseIdentifier: "tweetCell")
         
         let tableViewHeaderCellNib: UINib = UINib(nibName: "TimelineHeaderTableViewCell", bundle: nil)
         self.tableView.register(tableViewHeaderCellNib, forCellReuseIdentifier: "timelineHeaderCell")
         
+        // Setup initial Search View UI state
         activityIndicator.isHidden = false
         tableView.isHidden = true
+        self.statusLbl.text = "Search for a Twitter Screen Name to View and Feel its Timeline!"
 
-        let twitterAPIService = TwitterAPIService.shared
-        twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
-            print("completed: \(String(describing: tokenObject?.toJSONString()))")
-            self.activityIndicator.isHidden = true
-            
-            if let token = tokenObject?.access_token {
-                AppPreferenceService.shared.saveBearerToken(bearerToken: token)
+        // Check if Bearer token exists or not
+        if AppPreferenceService.shared.getBearerToken() == nil {
+            // If not get Bearer token and save it
+            let twitterAPIService = TwitterAPIService.shared
+            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
+                print("completed: \(String(describing: tokenObject?.toJSONString()))")
+                self.activityIndicator.isHidden = true
+                
+                // Save bearer token for later use
+                if let token = tokenObject?.access_token {
+                    AppPreferenceService.shared.saveBearerToken(bearerToken: token)
+                }
+                self.activityIndicator.isHidden = true
             }
+        } else {
             self.activityIndicator.isHidden = true
         }
-        
     }
 }
 

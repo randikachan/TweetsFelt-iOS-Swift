@@ -29,6 +29,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RZP-jr-Evh"/>
                                 </connections>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63G-TG-idh">
+                                <rect key="frame" x="25" y="280" width="325" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-iF-ON6">
                                 <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,11 +59,15 @@
                         <constraints>
                             <constraint firstItem="Dui-DS-Nce" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="50X-pR-yig"/>
                             <constraint firstItem="eDw-Wh-hb0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="58X-bc-dUe"/>
+                            <constraint firstItem="63G-TG-idh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="6uz-kM-Zah"/>
                             <constraint firstItem="Dui-DS-Nce" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9uP-hn-J6X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mNn-iF-ON6" secondAttribute="bottom" id="L0E-Ht-vb6"/>
                             <constraint firstItem="mNn-iF-ON6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RGR-fY-XO4"/>
+                            <constraint firstItem="63G-TG-idh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="WBh-97-oge"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="63G-TG-idh" secondAttribute="trailing" constant="25" id="XN1-NQ-Mih"/>
                             <constraint firstItem="mNn-iF-ON6" firstAttribute="top" secondItem="Dui-DS-Nce" secondAttribute="bottom" id="Yty-un-Xvf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mNn-iF-ON6" secondAttribute="trailing" id="agq-1U-sWY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="63G-TG-idh" secondAttribute="bottom" constant="366.5" id="eKV-7b-du5"/>
                             <constraint firstItem="eDw-Wh-hb0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kJn-5I-ZaC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dui-DS-Nce" secondAttribute="trailing" id="yPS-Bd-SFW"/>
                         </constraints>
@@ -68,6 +78,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="eDw-Wh-hb0" id="kb5-3w-eSX"/>
                         <outlet property="searchBar" destination="Dui-DS-Nce" id="5Qh-Ur-v5O"/>
+                        <outlet property="statusLbl" destination="63G-TG-idh" id="P1K-NB-NOS"/>
                         <outlet property="tableView" destination="mNn-iF-ON6" id="laU-EW-s0T"/>
                     </connections>
                 </viewController>
