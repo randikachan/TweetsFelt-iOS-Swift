@@ -27,8 +27,6 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         let tableViewCellNib: UINib = UINib(nibName: "TweetTableViewCell", bundle: nil)
         self.tableView.register(tableViewCellNib, forCellReuseIdentifier: "tweetCell")
         
-        Helper.setTableViewBackgroundGradient(view: self.view, tableView: self.tableView, #colorLiteral(red: 0.002226956359, green: 0.8108235771, blue: 1, alpha: 1), #colorLiteral(red: 0.03017414983, green: 0.5037739766, blue: 1, alpha: 1))
-        
         activityIndicator.isHidden = false
         tableView.isHidden = true
 
