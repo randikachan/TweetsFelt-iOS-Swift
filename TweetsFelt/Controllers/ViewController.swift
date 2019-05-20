@@ -34,20 +34,20 @@ class ViewController: UIViewController {
 //
 //        }
         
-        var requestParams: [TimelineRequestParams: Any] = [.screen_name : "randikachan"]
-            requestParams[.trim_user] = true
-            requestParams[.exclude_replies] = true
-            requestParams[.include_rts] = false
-            requestParams[.count] = 20
-        
-        
-        twitterAPIService.fetchUserTimelineFor(requestData: requestParams) { (json, jsonError) in
-            
-            let apiResponse = Mapper<Tweet>().mapArray(JSONObject: json)
-            
-            print("apiResponse: \(apiResponse?.count)")
-
-        }
+//        var requestParams: [TimelineRequestParams: Any] = [.screen_name : "randikachan"]
+//            requestParams[.trim_user] = true
+//            requestParams[.exclude_replies] = true
+//            requestParams[.include_rts] = false
+//            requestParams[.count] = 20
+//        
+//        
+//        twitterAPIService.fetchUserTimelineFor(requestData: requestParams) { (json, jsonError) in
+//            
+//            let apiResponse = Mapper<Tweet>().mapArray(JSONObject: json)
+//            
+//            // print("apiResponse: \(apiResponse?.count)")
+//
+//        }
     }
 
 
