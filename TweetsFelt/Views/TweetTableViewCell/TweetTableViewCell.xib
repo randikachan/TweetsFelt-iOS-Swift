@@ -60,6 +60,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="sentimentThumbLbl" destination="c4C-B8-DwQ" id="lEy-XO-qwZ"/>
+                <outlet property="tweetTextTVw" destination="09P-3G-OXp" id="9MT-Ew-GMC"/>
             </connections>
             <point key="canvasLocation" x="136" y="179.01049475262371"/>
         </tableViewCell>
