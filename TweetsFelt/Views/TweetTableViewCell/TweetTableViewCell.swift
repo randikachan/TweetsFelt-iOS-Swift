@@ -21,14 +21,20 @@ class TweetTableViewCell: UITableViewCell {
         backgroundColor = .clear // very important
         layer.masksToBounds = false
         layer.shadowOpacity = 0.23
-        layer.shadowRadius = 4
-        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 12
+        layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowColor = UIColor.black.cgColor
         
         // add corner radius on `contentView`
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 8
+        contentView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.7066299229)
+        contentView.layer.cornerRadius = 15
         
+        self.layoutSubviews()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()   
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

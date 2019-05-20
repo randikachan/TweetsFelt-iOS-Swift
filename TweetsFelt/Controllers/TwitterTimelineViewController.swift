@@ -78,12 +78,24 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         
+        cell.clipsToBounds = true
+        
         return cell;
     }
     
     public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Please search for screen name to view Tweets"
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // This will turn on `masksToBounds` just before showing the cell
+        cell.contentView.layer.masksToBounds = true
+        
+        // for smooth scrolling
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+    }
+    
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let selectedCountry: Country = self.countriesArr[indexPath.row]
