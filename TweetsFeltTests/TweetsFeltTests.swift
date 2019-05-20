@@ -7,21 +7,81 @@
 //
 
 import XCTest
+import Keys
 import ObjectMapper
 @testable import TweetsFelt
 
 class TweetsFeltTests: XCTestCase {
 
     var sut: TwitterAPIService!
+    var keys: TweetsFeltKeys!
     
     override func setUp() {
         sut = TwitterAPIService.shared
+        keys = TweetsFeltKeys()
     }
 
     override func tearDown() {
         sut = nil
+        keys = nil
     }
 
+    func testBearerTokenSuccess() {
+        // 1. given
+        let api_key = keys.twitterConsumerAPIKey
+        let api_secret = keys.twitterConsumerAPISecret
+        
+        let promise = expectation(description: "Able to get an Access Token successfully")
+        
+        // 2. when
+        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (json, jsonError) in
+            // 3. then
+            if let error = jsonError {
+                XCTFail("Error: \(String(describing: error.error?.localizedDescription))")
+                return
+            } else if let response = TokenResponse(JSON: json![0]) {
+                if response.token_type != nil && response.access_token != nil {
+                    print("Received Bearer Token: \(response.access_token ?? "nil")")
+                    promise.fulfill()
+                } else {
+                    XCTFail("Get Access Token Failed: \(jsonError?.error?.localizedDescription ?? "nil")")
+                }
+            }
+        }
+        
+        // 3. Then
+        wait(for: [promise], timeout: 8)
+    }
+
+    func testBearerTokenFailure() {
+        // 1. given
+        let api_key = keys.twitterConsumerAPIKey
+        let api_secret = "keys.twitterConsumerAPISecret"
+        
+        let promise = expectation(description: "Get an Access Token won't be succeed")
+        
+        // 2. when
+        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (json, jsonError) in
+            // 3. then
+            if let errors = jsonError?.errors {
+                if let firstError = errors.first {
+                    XCTAssertEqual(firstError.code, 99, firstError.message ?? "Test Passed - Get Bearer token failed")
+                }
+                promise.fulfill()
+                return
+            } else if let response = TokenResponse(JSON: json![0]) {
+                if response.token_type != nil {
+                    print("Was able to get a token with: \(String(describing: response.token_type))")
+                    XCTFail("Was able to get a token with: \(String(describing: response.token_type))")
+                }
+            }
+        }
+        
+        // 3. Then
+        wait(for: [promise], timeout: 8)
+    }
+
+    
     func testFetchUserTimelineSuccess() {
         // 1. given
         let requestParams: [TimelineRequestParams: Any] = sut.getRequestParameters(screen_name: "randikachan")

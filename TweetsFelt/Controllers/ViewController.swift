@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let twitterAPIService = TwitterAPIService.shared
+//        let twitterAPIService = TwitterAPIService.shared
 //        twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (json, error) in
 //            print("completed: \(json)")
 //        }
