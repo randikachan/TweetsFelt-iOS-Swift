@@ -24,7 +24,7 @@ class TweetsFeltTests: XCTestCase {
 
     func testFetchUserTimelineSuccess() {
         // 1. given
-        let requestParams: [TimelineRequestParams: Any] = getRequestParameters(screen_name: "randikachan")
+        let requestParams: [TimelineRequestParams: Any] = sut.getRequestParameters(screen_name: "randikachan")
         
         let promise = expectation(description: "Have at least 1 Tweet in the Timeline for the given screen_name: randikachan")
         
@@ -51,7 +51,7 @@ class TweetsFeltTests: XCTestCase {
     
     func testUserTimelineNotFound() {
         // 1. given
-        let requestParams: [TimelineRequestParams: Any] = getRequestParameters(screen_name: "rasdfandiasdfkachan")
+        let requestParams: [TimelineRequestParams: Any] = sut.getRequestParameters(screen_name: "rasdfandiasdfkachan")
         
         let promise = expectation(description: "Could Not find a Timeline for the screen_name: rasdfandiasdfkachan")
         
@@ -79,7 +79,7 @@ class TweetsFeltTests: XCTestCase {
     
     func testUserTimelineUnAuthorized() {
         // 1. given
-        let requestParams: [TimelineRequestParams: Any] = getRequestParameters(screen_name: "rasdfandiasdfkachan")
+        let requestParams: [TimelineRequestParams: Any] = sut.getRequestParameters(screen_name: "rasdfandiasdfkachan")
         
         let promise = expectation(description: "Could Not find a Timeline for the screen_name: rasdfandiasdfkachan")
         
@@ -112,13 +112,4 @@ class TweetsFeltTests: XCTestCase {
         }
     }
     
-    func getRequestParameters(screen_name: String) -> [TimelineRequestParams: Any] {
-        var requestParams: [TimelineRequestParams: Any] = [.screen_name : screen_name]
-            requestParams[.trim_user] = true        // Send less user details
-            requestParams[.exclude_replies] = true  // Exclude Reply tweets
-            requestParams[.include_rts] = false     // Except Retweets
-            requestParams[.count] = 20               // out of first 20 tweets
-        
-        return requestParams;
-    }
 }

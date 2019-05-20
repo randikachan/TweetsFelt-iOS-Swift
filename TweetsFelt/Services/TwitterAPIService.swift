@@ -17,14 +17,6 @@ class TwitterAPIService : NetworkClient {
     
     let keys = TweetsFeltKeys()
     
-    func generateAuthenticationHeaders(api_key: String, api_secret: String) -> [String: String] {
-        let credentials = "\(api_key):\(api_secret)".data(using: .utf8)!
-        
-        let credentialsBase64 = credentials.base64EncodedString(options: [])
-        
-        return ["Authorization": "Basic \(credentialsBase64)"]
-    }
-    
     func getBearerToken(api_key: String, api_secret: String, completion: @escaping WebServiceResponse) {
 
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
@@ -82,6 +74,32 @@ class TwitterAPIService : NetworkClient {
     
     func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping WebServiceResponse) {
         fetchUserTimelineFor(requestData: requestData, bearerToken: nil, completion: completion)
+    }
+
+}
+
+extension TwitterAPIService {
+    
+    func generateAuthenticationHeaders(api_key: String, api_secret: String) -> [String: String] {
+        let credentials = "\(api_key):\(api_secret)".data(using: .utf8)!
+        
+        let credentialsBase64 = credentials.base64EncodedString(options: [])
+        
+        return ["Authorization": "Basic \(credentialsBase64)"]
+    }
+    
+    func getRequestParameters(screen_name: String) -> [TimelineRequestParams: Any] {
+        return getRequestParameters(screen_name: screen_name, trim_user: true, exclude_reply_tweets: true, include_retweets: false, number_of_tweets_to_fetch: 20)
+    }
+    
+    func getRequestParameters(screen_name: String, trim_user: Bool = true, exclude_reply_tweets: Bool = true, include_retweets: Bool = false, number_of_tweets_to_fetch: Int = 20) -> [TimelineRequestParams: Any] {
+        var requestParams: [TimelineRequestParams: Any] = [.screen_name : screen_name]
+        requestParams[.trim_user] = true        // Send less user details
+        requestParams[.exclude_replies] = true  // Exclude Reply tweets
+        requestParams[.include_rts] = false     // Except Retweets
+        requestParams[.count] = 20               // out of first 20 tweets
+        
+        return requestParams;
     }
 
 }
