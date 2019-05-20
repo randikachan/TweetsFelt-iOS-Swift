@@ -34,6 +34,8 @@
 		2090A6AB2292D79F007FBF1C /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6A92292D79F007FBF1C /* TweetTableViewCell.swift */; };
 		2090A6AC2292D79F007FBF1C /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2090A6AA2292D79F007FBF1C /* TweetTableViewCell.xib */; };
 		2090A6AF2292E974007FBF1C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6AE2292E974007FBF1C /* Helper.swift */; };
+		2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */; };
+		2090A6B622931276007FBF1C /* TimelineHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */; };
 		598916D68F806269C8EC8DCC /* Pods_TweetsFeltTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6D16C76650C2A6F7553F5 /* Pods_TweetsFeltTests.framework */; };
 		BA37EB5689EA37429DDBCEF4 /* Pods_TweetsFelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */; };
 		FFF548FF9F6EB05EE1FD8A36 /* Pods_TweetsFeltUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F78B7FFD21B892FBD5E91B /* Pods_TweetsFeltUITests.framework */; };
@@ -92,6 +94,8 @@
 		2090A6A92292D79F007FBF1C /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		2090A6AA2292D79F007FBF1C /* TweetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
 		2090A6AE2292E974007FBF1C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		3D6052042E34386E016EEE3C /* Pods-TweetsFeltUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltUITests/Pods-TweetsFeltUITests.release.xcconfig"; sourceTree = "<group>"; };
 		471C747908C849791358E300 /* Pods-TweetsFeltTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltTests/Pods-TweetsFeltTests.release.xcconfig"; sourceTree = "<group>"; };
 		58295FC053581F7D5CAAA0A3 /* Pods_TweetsFelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweetsFelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +223,7 @@
 				202DD499229137570052F804 /* Main.storyboard */,
 				202DD49E229137570052F804 /* LaunchScreen.storyboard */,
 				2090A6AD2292D7AD007FBF1C /* TweetTableViewCell */,
+				2090A6B722931286007FBF1C /* TimelineHeaderTableViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +300,15 @@
 				2090A6AE2292E974007FBF1C /* Helper.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2090A6B722931286007FBF1C /* TimelineHeaderTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */,
+				2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */,
+			);
+			path = TimelineHeaderTableViewCell;
 			sourceTree = "<group>";
 		};
 		78359873AECA8A4954DD0723 /* Pods */ = {
@@ -433,6 +447,7 @@
 			files = (
 				202DD4A0229137570052F804 /* LaunchScreen.storyboard in Resources */,
 				202DD49D229137570052F804 /* Assets.xcassets in Resources */,
+				2090A6B622931276007FBF1C /* TimelineHeaderTableViewCell.xib in Resources */,
 				202DD49B229137570052F804 /* Main.storyboard in Resources */,
 				2090A6AC2292D79F007FBF1C /* TweetTableViewCell.xib in Resources */,
 			);
@@ -543,6 +558,7 @@
 				204C66A222918F9400CBAA2D /* NetworkConstants.swift in Sources */,
 				2090A6A82292C919007FBF1C /* TwitterTimelineViewController.swift in Sources */,
 				2090A6A022928A40007FBF1C /* TokenResponse.swift in Sources */,
+				2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */,
 				2090A6AB2292D79F007FBF1C /* TweetTableViewCell.swift in Sources */,
 				202DD4DF22917EAB0052F804 /* Keys.framework in Sources */,
 				204C66AE2292038400CBAA2D /* Tweet.swift in Sources */,
