@@ -63,7 +63,7 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
-        
+
         // At this point, the didSet block will set up the cell's views
         cell.sentimentThumbLbl.text = sentimentEmojisArr[0]
         cell.sentimentThumbLbl.backgroundColor = UIColor.clear
@@ -74,16 +74,6 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         
         cell.clipsToBounds = true
-        
-        return cell;
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "timelineHeaderCell") as! TimelineHeaderTableViewCell
         
         return cell
     }
@@ -97,16 +87,8 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
     }
     
-    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedCountry: Country = self.countriesArr[indexPath.row]
-//        print("\(selectedCountry.name)")
-//        delegate?.didSelectCountry(country: selectedCountry)
-//
-//        if presentationMethod == .MODAL {
-//            self.dismiss(animated: true, completion: nil)
-//        } else if presentationMethod == .PUSHED || presentationMethod == .UNKNOWN {
-//            self.navigationController?.popViewController(animated: true)
-//        }
+        print("lajsdlflaksjdflkajsdflkjas")
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

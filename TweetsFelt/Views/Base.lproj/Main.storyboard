@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-iF-ON6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-iF-ON6">
                                 <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zlz-43-tfp" id="O6g-AJ-Gd0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -53,6 +53,7 @@
                             <constraint firstItem="Dui-DS-Nce" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9uP-hn-J6X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mNn-iF-ON6" secondAttribute="bottom" id="L0E-Ht-vb6"/>
                             <constraint firstItem="mNn-iF-ON6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RGR-fY-XO4"/>
+                            <constraint firstItem="mNn-iF-ON6" firstAttribute="top" secondItem="Dui-DS-Nce" secondAttribute="bottom" id="Yty-un-Xvf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mNn-iF-ON6" secondAttribute="trailing" id="agq-1U-sWY"/>
                             <constraint firstItem="eDw-Wh-hb0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kJn-5I-ZaC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dui-DS-Nce" secondAttribute="trailing" id="yPS-Bd-SFW"/>
