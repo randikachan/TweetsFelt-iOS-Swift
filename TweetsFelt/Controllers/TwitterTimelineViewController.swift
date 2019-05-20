@@ -60,10 +60,6 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         return self.tweetsArr.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
         
@@ -71,10 +67,8 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         cell.sentimentThumbLbl.text = sentimentEmojisArr[0]
         cell.sentimentThumbLbl.backgroundColor = UIColor.clear
         
-        cell.tweetTextTVw.backgroundColor = UIColor.clear
-        cell.tweetTextTVw.text = self.tweetsArr[indexPath.item].text
-        cell.tweetTextTVw.isEditable = false
-        cell.tweetTextTVw.isSelectable = false
+        cell.tweetTextLbl.backgroundColor = UIColor.clear
+        cell.tweetTextLbl.text = self.tweetsArr[indexPath.item].text
         
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         

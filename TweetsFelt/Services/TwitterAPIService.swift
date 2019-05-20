@@ -97,7 +97,7 @@ extension TwitterAPIService {
         var requestParams: [TimelineRequestParams: Any] = [.screen_name : screen_name]
         requestParams[.trim_user] = true        // Send less user details
         requestParams[.exclude_replies] = true  // Exclude Reply tweets
-        requestParams[.include_rts] = false     // Except Retweets
+        requestParams[.include_rts] = true     // Except Retweets
         requestParams[.count] = 20               // out of first 20 tweets
         
         return requestParams;

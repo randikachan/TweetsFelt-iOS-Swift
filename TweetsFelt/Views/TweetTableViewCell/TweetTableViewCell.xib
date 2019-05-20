@@ -20,21 +20,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu Jan 03 2019 - 12:48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCm-1T-Ybv">
-                        <rect key="frame" x="16" y="10" width="140" height="15"/>
+                        <rect key="frame" x="16" y="10" width="140" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="09P-3G-OXp">
-                        <rect key="frame" x="16" y="28" width="288" height="81"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="288" id="6AF-n9-mIy"/>
-                        </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4C-B8-DwQ">
                         <rect key="frame" x="281" y="7" width="23" height="21"/>
                         <constraints>
@@ -45,24 +35,31 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcN-x4-pfn">
+                        <rect key="frame" x="16" y="32.5" width="288" height="76.5"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="09P-3G-OXp" secondAttribute="bottom" constant="10.5" id="9Zi-TO-DaA"/>
-                    <constraint firstItem="09P-3G-OXp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="AHN-bT-2Hz"/>
                     <constraint firstItem="cCm-1T-Ybv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="EGK-mS-aPS"/>
                     <constraint firstAttribute="trailing" secondItem="c4C-B8-DwQ" secondAttribute="trailing" constant="16" id="H45-3y-cHs"/>
+                    <constraint firstItem="fcN-x4-pfn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Hhh-w2-1HW"/>
+                    <constraint firstItem="fcN-x4-pfn" firstAttribute="top" secondItem="cCm-1T-Ybv" secondAttribute="bottom" constant="8" id="OQn-o5-rT2"/>
                     <constraint firstItem="c4C-B8-DwQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="QNo-qO-FaI"/>
-                    <constraint firstAttribute="trailing" secondItem="09P-3G-OXp" secondAttribute="trailing" constant="16" id="VSN-Qd-xLW"/>
+                    <constraint firstAttribute="bottom" secondItem="fcN-x4-pfn" secondAttribute="bottom" constant="10.5" id="Ymn-IW-MMg"/>
                     <constraint firstItem="cCm-1T-Ybv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="YoV-Kb-LXc"/>
-                    <constraint firstItem="09P-3G-OXp" firstAttribute="top" secondItem="cCm-1T-Ybv" secondAttribute="bottom" constant="3" id="q4f-v8-4Oo"/>
+                    <constraint firstAttribute="trailing" secondItem="fcN-x4-pfn" secondAttribute="trailing" constant="16" id="hrU-Hv-4vp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="sentimentThumbLbl" destination="c4C-B8-DwQ" id="lEy-XO-qwZ"/>
-                <outlet property="tweetTextTVw" destination="09P-3G-OXp" id="9MT-Ew-GMC"/>
+                <outlet property="tweetTextLbl" destination="fcN-x4-pfn" id="tUe-PH-rBf"/>
             </connections>
-            <point key="canvasLocation" x="136" y="179.01049475262371"/>
+            <point key="canvasLocation" x="-258" y="53"/>
         </tableViewCell>
     </objects>
 </document>
