@@ -61,6 +61,18 @@ class TwitterTimelineViewController: UIViewController {
         } else {
             self.activityIndicator.isHidden = true
         }
+        
+        let googleAPIService = GoogleNaturalLangAPIService.shared
+        let documentRequestObj = GoogleNLPDocumentRequest(JSONString: "{\n  \"document\":{\n    \"type\":\"PLAIN_TEXT\",\n    \"language\": \"EN\",\n    \"content\":\"Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️ It’s fcuking annoying!\"\n  },\n  \"encodingType\":\"UTF8\"\n}")
+        
+        googleAPIService.analyzeDocument(documentRequest: documentRequestObj!) { (googleSentimentObj, googleSentimentArr, baseError) in
+            if googleSentimentObj != nil {
+                print("document magnitude: \(googleSentimentObj?.documentSentiment?.magnitude)")
+                print("document score: \(googleSentimentObj?.documentSentiment?.score)")
+            } else if baseError != nil {
+                print("analyzeDocument Error: \(baseError?.googleNLPError)")
+            }
+        }
     }
 }
 

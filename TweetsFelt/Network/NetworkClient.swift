@@ -12,7 +12,7 @@ import Alamofire
 
 class NetworkClient: NetworkProtocol {
 
-    private let enable_logs = false
+    private let enable_logs = true
     
     func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, BaseAPIError?) -> Void) where Type: BaseMappable
     {

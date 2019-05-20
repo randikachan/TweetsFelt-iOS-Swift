@@ -14,14 +14,15 @@ import ObjectMapper
 class GoogleNaturalLangAPIService: NetworkClient {
 
     // MARK: - Singleton
-    static let shared = TwitterAPIService()
+    static let shared = GoogleNaturalLangAPIService()
     
     let keys = TweetsFeltKeys()
     
-    func analyzeDocument(documentRequest: GoogleNLPDocumentRequest, completion: @escaping (GoogleNLSentimentResponse?, [GoogleNLSentimentResponse]?, GoogleNLPError?) -> Void) {
+    func analyzeDocument(documentRequest: GoogleNLPDocumentRequest, completion: @escaping (GoogleNLSentimentResponse?, [GoogleNLSentimentResponse]?, BaseAPIError?) -> Void) {
         
         // use bearer token saved in user defaults
-        var api_key: String = AppPreferenceService.shared.getBearerToken()!
+        AppPreferenceService.shared.saveGoogleAPIKey(apiKey: "AIzaSyD3EpwfjzSk5Go_d-A_AmxvDGH4sWMI_I0")
+        let api_key: String = AppPreferenceService.shared.getGoogleAPIKey()!
     
         var headers: [String: String] = [:]
             headers["Accept"] = "*/*"
@@ -29,14 +30,28 @@ class GoogleNaturalLangAPIService: NetworkClient {
             headers["Content-Type"] = "application/json"
             headers["accept-encoding"] = "gzip, deflate"
     
-        var parameters: [String: Any] = ["key": api_key]
-    
-        let endpoint = Endpoint(url: URL(string: NetworkConstants.GOOGLE_NLP_API_URL.rawValue)!,
-                                path: NetworkConstants.ENDPOINT_DOCUMENT_ANALYZE_SENTIMENT.rawValue,
+        let scheme = "https"
+        let host = NetworkConstants.GOOGLE_NLP_API_URL.rawValue
+        let path = NetworkConstants.ENDPOINT_DOCUMENT_ANALYZE_SENTIMENT.rawValue
+        let queryItem = URLQueryItem(name: "key", value: api_key)
+        
+        var urlComponents = URLComponents()
+            urlComponents.scheme = scheme
+            urlComponents.host = host
+            urlComponents.path = path
+            urlComponents.queryItems = [queryItem]
+        
+        print(urlComponents.url)
+        if let url = urlComponents.url {
+            
+        }
+        
+        let endpoint = Endpoint(url: urlComponents.url!,
+                                path: "",
                                 httpMethod: .post,
-                                parameters: parameters,
+                                parameters: [:],
                                 headers: headers)
     
-//        execute(endpoint, completion: completion)
+        execute(endpoint, completion: completion)
     }
 }

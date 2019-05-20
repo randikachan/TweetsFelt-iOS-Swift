@@ -27,4 +27,18 @@ class AppPreferenceService {
         defaults.removeObject(forKey: AppPreferenceKeys.bearerToken.rawValue)
         defaults.synchronize()
     }
+    
+    func saveGoogleAPIKey(apiKey: String) {
+        defaults.set(apiKey, forKey: AppPreferenceKeys.googleAPIKey.rawValue)
+        defaults.synchronize()
+    }
+    
+    func getGoogleAPIKey() -> String? {
+        return defaults.string(forKey: AppPreferenceKeys.googleAPIKey.rawValue)
+    }
+    
+    func removeGetGoogleAPIKey() {
+        defaults.removeObject(forKey: AppPreferenceKeys.googleAPIKey.rawValue)
+        defaults.synchronize()
+    }
 }
