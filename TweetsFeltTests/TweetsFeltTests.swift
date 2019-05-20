@@ -65,7 +65,7 @@ class TweetsFeltTests: XCTestCase {
         // 2. when
         sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (tokenResponseObj, tokenResponseArr, jsonError) in
             // 3. then
-            if let errors = jsonError?.errors {
+            if let errors = jsonError?.twitterError?.errors {
                 if let firstError = errors.first {
                     XCTAssertEqual(firstError.code, 99, firstError.message ?? "Test Passed - Get Bearer token failed")
                 }
@@ -118,7 +118,7 @@ class TweetsFeltTests: XCTestCase {
         sut.fetchUserTimelineFor(requestData: requestParams) { (tweetsObj, tweetsArray, jsonError) in
             
             // 3. then
-            if let errors = jsonError?.errors {
+            if let errors = jsonError?.twitterError!.errors {
                 if let firstError = errors.first {
                     XCTAssertEqual(firstError.code, 34, firstError.message ?? "Test Passed - Timeline couldn't found for the given screen_name")
                 }
@@ -146,7 +146,7 @@ class TweetsFeltTests: XCTestCase {
         sut.fetchUserTimelineFor(requestData: requestParams, bearerToken: "asldfjalsdfj") { (tweetsObj, tweetsArr, jsonError) in
             
             // 3. then
-            if let errors = jsonError?.errors {
+            if let errors = jsonError?.twitterError?.errors {
                 if let firstError = errors.first {
                     XCTAssertEqual(firstError.code, 89, firstError.message ?? "Test Passed - Invalid token")
                 }
