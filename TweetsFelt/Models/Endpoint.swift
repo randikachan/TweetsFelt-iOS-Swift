@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 import Alamofire
 
 class Endpoint {
@@ -16,15 +17,13 @@ class Endpoint {
     let httpMethod: HTTPMethod
     let parameters: Parameters
     let headers: HTTPHeaders
-    let responseType: Any.Type
     
-    init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:], type: Any.Type) {
+    init(url: URL, path: String? = nil, httpMethod: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders = [:]) {
         self.url = url
         self.path = path
         self.httpMethod = httpMethod
         self.parameters = parameters
         self.headers = headers
-        self.responseType = type
     }
     
     func createRequest() -> DataRequest {

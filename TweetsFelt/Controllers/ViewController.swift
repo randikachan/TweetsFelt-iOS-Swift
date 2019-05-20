@@ -23,8 +23,8 @@ class ViewController: UIViewController {
 
         activityIndicator.isHidden = false
         let twitterAPIService = TwitterAPIService.shared
-        twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenResponse, jsonError) in
-            print("completed: \(tokenResponse?.toJSONString())")
+        twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
+            print("completed: \(String(describing: tokenObject?.toJSONString()))")
             self.activityIndicator.isHidden = true
         }
     }

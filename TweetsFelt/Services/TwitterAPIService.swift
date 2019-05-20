@@ -18,27 +18,18 @@ class TwitterAPIService : NetworkClient {
     
     let keys = TweetsFeltKeys()
     
-    func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, TwitterErrorResponse?) -> Void) {
+    func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, [TokenResponse]?, TwitterErrorResponse?) -> Void) {
 
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue,
                                 httpMethod: .post,
                                 parameters: ["grant_type": "client_credentials"],
-                                headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret),
-                                type: TokenResponse.self)
+                                headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))
 
-        // execute(endpoint, completion: completion)
-        execute(endpoint) { (jsonResponse, jsonError) in
-            if jsonResponse != nil {
-                let response = TokenResponse(JSON: jsonResponse![0])
-                completion(response, nil)
-            } else {
-                completion(nil, jsonError)
-            }
-        }
+        execute(endpoint, completion: completion)
     }
     
-    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping (InvalidateTokenResponse?, TwitterErrorResponse?) -> Void) {
+    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping (InvalidateTokenResponse?, [InvalidateTokenResponse]?, TwitterErrorResponse?) -> Void) {
         
         var headers = generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret)
         headers["Accept"] = "*/*"
@@ -47,21 +38,12 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_INVALIDATE_TOKEN.rawValue,
                                 httpMethod: .post,
                                 parameters: ["access_token": "\(bearerToken)"],
-                                headers: headers,
-                                type: InvalidateTokenResponse.self)
+                                headers: headers)
         
-        // execute(endpoint, completion: completion)
-        execute(endpoint) { (jsonResponse, jsonError) in
-            if jsonResponse != nil {
-                let response = InvalidateTokenResponse(JSON: jsonResponse![0])
-                completion(response, nil)
-            } else {
-                completion(nil, jsonError)
-            }
-        }
+        execute(endpoint, completion: completion)
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping ([Tweet]?, TwitterErrorResponse?) -> Void) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping (Tweet?, [Tweet]?, TwitterErrorResponse?) -> Void) {
         var localBearerToken: String
         if bearerToken == nil {
             // TODO: Storing Bearer Token in NSUsserDefaults/Key-chain is not yet implemented
@@ -86,18 +68,12 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
                                 httpMethod: .get,
                                 parameters: parameters,
-                                headers: headers,
-                                type: [Tweet].self)
+                                headers: headers)
         
-        // execute(endpoint, completion: completion)
-        
-        execute(endpoint) { (jsonResponse, jsonError) in
-            let tweetsArr = Mapper<Tweet>().mapArray(JSONObject: jsonResponse)
-            completion(tweetsArr, jsonError)
-        }
+        execute(endpoint, completion: completion)
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping ([Tweet]?, TwitterErrorResponse?) -> Void) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping (Tweet?, [Tweet]?, TwitterErrorResponse?) -> Void) {
         fetchUserTimelineFor(requestData: requestData, bearerToken: nil, completion: completion)
     }
 

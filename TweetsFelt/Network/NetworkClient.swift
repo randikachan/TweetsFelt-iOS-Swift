@@ -7,13 +7,15 @@
 //
 
 import Foundation
+import ObjectMapper
 import Alamofire
 
 class NetworkClient: NetworkProtocol {
 
     private let enable_logs = false
     
-    func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse) {
+    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, TwitterErrorResponse?) -> Void) where Type: BaseMappable
+    {
         let urlRequest = endpoint.createRequest()
         
         if self.enable_logs {
@@ -28,27 +30,38 @@ class NetworkClient: NetworkProtocol {
                         responseString = String(data: response.data!, encoding: String.Encoding.utf8) ?? ""
                         let jsonError = TwitterErrorResponse(JSONString: responseString)
                         jsonError?.error = response.error
-                        completion(nil, jsonError)
+                        completion(nil, nil, jsonError)
                     } else {
                         let jsonError = TwitterErrorResponse(JSONString: "")
                         jsonError?.error = response.error
-                        completion(nil, jsonError)
+                        completion(nil, nil, jsonError)
                     }
                     
                     if self.enable_logs {
                         print("JSON ERROR: \(error.localizedDescription)")
                     }
-                } else if let jsonArray = response.result.value as? [[String: Any]] {
-                    completion(jsonArray, nil)
+                } else if let jsonArray = response.result.value as? [Any] {
+                    let objectArray = Mapper<Type>().mapArray(JSONObject: jsonArray)
+                    completion(nil, objectArray, nil)
                     
                     if self.enable_logs {
                         print("JSON ARR: \(jsonArray)")
                     }
-                } else if let jsonDict = response.result.value as? [String: Any] {
-                    completion([jsonDict], nil)
+                } else if let jsonObject = response.result.value as? Dictionary<String, Any> {
+                    let decodedObject = Mapper<Type>().map(JSONObject: jsonObject)
+                    completion(decodedObject, nil, nil)
+                    
                     if self.enable_logs {
-                        print("JSON Dict: \(jsonDict)")
+                        print("JSON ARR: \(String(describing: decodedObject))")
                     }
+                } else {
+                    print("response.result.value: \(String(describing: response.result.value))")
+                    let jsonError = TwitterErrorResponse(JSONString: "")
+                    let webAPIError = TwitterError(JSONString: "")
+                    
+                    webAPIError?.message = "Internal Error"
+                    jsonError!.errors?.append(webAPIError!)
+                    completion(nil, nil, jsonError)
                 }
             }
         }

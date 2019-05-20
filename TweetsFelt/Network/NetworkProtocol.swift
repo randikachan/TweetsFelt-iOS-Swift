@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import ObjectMapper
 
 protocol NetworkProtocol {
-
-    // WebServiceResponse Typealias
-    typealias WebServiceResponse = ([[String: Any]]?, TwitterErrorResponse?) -> Void
     
-    func execute(_ endpoint: Endpoint, completion: @escaping WebServiceResponse)
+    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, TwitterErrorResponse?) -> Void) where Type: BaseMappable
 
 }
