@@ -27,6 +27,9 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         let tableViewCellNib: UINib = UINib(nibName: "TweetTableViewCell", bundle: nil)
         self.tableView.register(tableViewCellNib, forCellReuseIdentifier: "tweetCell")
         
+        let tableViewHeaderCellNib: UINib = UINib(nibName: "TimelineHeaderTableViewCell", bundle: nil)
+        self.tableView.register(tableViewHeaderCellNib, forCellReuseIdentifier: "timelineHeaderCell")
+        
         activityIndicator.isHidden = false
         tableView.isHidden = true
 
@@ -75,8 +78,14 @@ class TwitterTimelineViewController: UIViewController, UITableViewDelegate, UITa
         return cell;
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Please search for screen name to view Tweets"
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "timelineHeaderCell") as! TimelineHeaderTableViewCell
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

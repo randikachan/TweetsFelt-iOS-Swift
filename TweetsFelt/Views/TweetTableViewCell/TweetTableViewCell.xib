@@ -23,7 +23,7 @@
                         <rect key="frame" x="16" y="11" width="288" height="123"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu Jan 03 2019 - 12:48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCm-1T-Ybv">
-                                <rect key="frame" x="8" y="8" width="140" height="14.5"/>
+                                <rect key="frame" x="14" y="10" width="140" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcN-x4-pfn">
-                                <rect key="frame" x="8" y="34" width="272" height="81"/>
+                                <rect key="frame" x="14" y="34" width="266" height="81"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -50,11 +50,11 @@
                         <constraints>
                             <constraint firstItem="c4C-B8-DwQ" firstAttribute="top" secondItem="54G-s2-Vd0" secondAttribute="top" constant="5" id="5EL-6u-psA"/>
                             <constraint firstItem="fcN-x4-pfn" firstAttribute="leading" secondItem="cCm-1T-Ybv" secondAttribute="leading" id="FML-Nv-fKQ"/>
-                            <constraint firstItem="fcN-x4-pfn" firstAttribute="top" secondItem="cCm-1T-Ybv" secondAttribute="bottom" constant="11.5" id="XIb-wg-kst"/>
-                            <constraint firstItem="cCm-1T-Ybv" firstAttribute="leading" secondItem="54G-s2-Vd0" secondAttribute="leading" constant="8" id="Y8F-qu-c7f"/>
-                            <constraint firstItem="cCm-1T-Ybv" firstAttribute="top" secondItem="54G-s2-Vd0" secondAttribute="top" constant="8" id="b1T-qp-WgV"/>
-                            <constraint firstItem="fcN-x4-pfn" firstAttribute="trailing" secondItem="cCm-1T-Ybv" secondAttribute="trailing" constant="132" id="pWg-WO-qQa"/>
-                            <constraint firstItem="c4C-B8-DwQ" firstAttribute="leading" secondItem="cCm-1T-Ybv" secondAttribute="trailing" constant="109" id="qgK-s8-lRb"/>
+                            <constraint firstItem="fcN-x4-pfn" firstAttribute="top" secondItem="cCm-1T-Ybv" secondAttribute="bottom" constant="9.5" id="XIb-wg-kst"/>
+                            <constraint firstItem="cCm-1T-Ybv" firstAttribute="leading" secondItem="54G-s2-Vd0" secondAttribute="leading" constant="14" id="Y8F-qu-c7f"/>
+                            <constraint firstItem="cCm-1T-Ybv" firstAttribute="top" secondItem="54G-s2-Vd0" secondAttribute="top" constant="10" id="b1T-qp-WgV"/>
+                            <constraint firstItem="fcN-x4-pfn" firstAttribute="trailing" secondItem="cCm-1T-Ybv" secondAttribute="trailing" constant="126" id="pWg-WO-qQa"/>
+                            <constraint firstItem="c4C-B8-DwQ" firstAttribute="leading" secondItem="cCm-1T-Ybv" secondAttribute="trailing" constant="103" id="qgK-s8-lRb"/>
                             <constraint firstAttribute="trailing" secondItem="c4C-B8-DwQ" secondAttribute="trailing" constant="8" id="xHA-rx-wwN"/>
                         </constraints>
                     </view>
