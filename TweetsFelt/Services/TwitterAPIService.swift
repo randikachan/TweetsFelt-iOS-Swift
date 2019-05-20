@@ -18,7 +18,7 @@ class TwitterAPIService : NetworkClient {
     
     let keys = TweetsFeltKeys()
     
-    func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, [TokenResponse]?, TwitterErrorResponse?) -> Void) {
+    func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, [TokenResponse]?, BaseAPIError?) -> Void) {
 
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue,
@@ -29,7 +29,7 @@ class TwitterAPIService : NetworkClient {
         execute(endpoint, completion: completion)
     }
     
-    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping (InvalidateTokenResponse?, [InvalidateTokenResponse]?, TwitterErrorResponse?) -> Void) {
+    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping (InvalidateTokenResponse?, [InvalidateTokenResponse]?, BaseAPIError?) -> Void) {
         
         var headers = generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret)
         headers["Accept"] = "*/*"
@@ -43,7 +43,7 @@ class TwitterAPIService : NetworkClient {
         execute(endpoint, completion: completion)
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping (Tweet?, [Tweet]?, TwitterErrorResponse?) -> Void) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping (Tweet?, [Tweet]?, BaseAPIError?) -> Void) {
         var localBearerToken: String
         if bearerToken == nil && AppPreferenceService.shared.getBearerToken() != nil {
             // use bearer token saved in user defaults
@@ -73,7 +73,7 @@ class TwitterAPIService : NetworkClient {
         execute(endpoint, completion: completion)
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping (Tweet?, [Tweet]?, TwitterErrorResponse?) -> Void) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping (Tweet?, [Tweet]?, BaseAPIError?) -> Void) {
         fetchUserTimelineFor(requestData: requestData, bearerToken: nil, completion: completion)
     }
 

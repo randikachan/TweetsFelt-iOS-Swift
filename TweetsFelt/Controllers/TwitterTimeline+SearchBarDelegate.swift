@@ -35,8 +35,8 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
                 self.tableView.reloadData()
                 self.tableView.setContentOffset(CGPoint.zero, animated: false)
             } else if errorResponse != nil {
-                if errorResponse?.errors?[0] != nil {
-                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.errors?[0].message)!)
+                if let errorMessage = errorResponse?.twitterError?.errors![0].message {
+                    self.setupErrorneousSearchVCWith(statusLabel: errorMessage)
                 } else if errorResponse?.error != nil {
                     print("Search error: " + (errorResponse?.error?.localizedDescription)!)
                     self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)

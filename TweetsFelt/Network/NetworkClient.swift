@@ -14,7 +14,7 @@ class NetworkClient: NetworkProtocol {
 
     private let enable_logs = false
     
-    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, TwitterErrorResponse?) -> Void) where Type: BaseMappable
+    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, BaseAPIError?) -> Void) where Type: BaseMappable
     {
         let urlRequest = endpoint.createRequest()
         
@@ -28,15 +28,27 @@ class NetworkClient: NetworkProtocol {
                     var responseString: String
                     if response.data != nil {
                         responseString = String(data: response.data!, encoding: String.Encoding.utf8) ?? ""
-                        let jsonError = TwitterErrorResponse(JSONString: responseString)
-                        jsonError?.error = response.error
-                        completion(nil, nil, jsonError)
+                        
+                        var baseError: BaseAPIError?
+                        
+                        if let twitterError = TwitterErrorResponse(JSONString: responseString) {
+                            baseError = BaseAPIError(twitterErrorResponse: twitterError, googleNLPErrorResponse: nil)
+                            baseError!.error = response.error
+                        } else if let googleError = GoogleNLPErrorResponse(JSONString: responseString) {
+                            baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: googleError)
+                            baseError!.error = response.error
+                        }
+                        baseError!.message = response.error?.localizedDescription
+
+                        completion(nil, nil, baseError)
                     } else {
-                        let jsonError = TwitterErrorResponse(JSONString: "")
-                        jsonError?.error = response.error
-                        completion(nil, nil, jsonError)
+                        let baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: nil)
+                        baseError.error = response.error
+                        baseError.message = response.error?.localizedDescription
+                        
+                        completion(nil, nil, baseError)
                     }
-                    
+
                     if self.enable_logs {
                         print("JSON ERROR: \(error.localizedDescription)")
                     }
@@ -56,12 +68,10 @@ class NetworkClient: NetworkProtocol {
                     }
                 } else {
                     print("response.result.value: \(String(describing: response.result.value))")
-                    let jsonError = TwitterErrorResponse(JSONString: "")
-                    let webAPIError = TwitterError(JSONString: "")
+                    let baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: nil)
+                    baseError.message = "Internal Error"
                     
-                    webAPIError?.message = "Internal Error"
-                    jsonError!.errors?.append(webAPIError!)
-                    completion(nil, nil, jsonError)
+                    completion(nil, nil, baseError)
                 }
             }
         }

@@ -1,51 +1,51 @@
 //
-//  TwitterError.swift
+//  GoogleNLPError.swift
 //  TweetsFelt
 //
-//  Created by Randika Vishman on 5/19/19.
+//  Created by Randika Vishman on 5/21/19.
 //  Copyright © 2019 randika. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
+
 /**
  // Following is an example of structured JSON Twitter Error response
-
+ 
  {
-     "error": [
-         {
-             "code": 348,
-             "message": "Client application is not permitted to to invalidate this token."
-         }
-     ]
+     "error": {
+         "code": 403,
+         "message": "Cloud Natural Language......",
+         "status": "PERMISSION_DENIED",
+         "details": []
+     }
  }
  */
 
-class TwitterError: Mappable {
+class GoogleNLPError: Mappable {
     
+    var status: String?
     var code: Int?
     var message: String?
     
     required init?(map: Map) {
-        
     }
     
-    // Mappable
     func mapping(map: Map) {
-        code    <- map["code"]
+        status <- map["status"]
+        code <- map["code"]
         message <- map["message"]
     }
 }
 
-class TwitterErrorResponse: Mappable {
+class GoogleNLPErrorResponse: Mappable {
     
-    var errors: [TwitterError]?
-    var error: Error?
+    var error: GoogleNLPError?
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
-        errors <- map["errors"]
+        error <- map["error"]
     }
 }

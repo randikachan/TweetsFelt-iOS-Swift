@@ -11,6 +11,6 @@ import ObjectMapper
 
 protocol NetworkProtocol {
     
-    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, TwitterErrorResponse?) -> Void) where Type: BaseMappable
+    func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, BaseAPIError?) -> Void) where Type: BaseMappable
 
 }
