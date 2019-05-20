@@ -81,7 +81,6 @@ class TweetsFeltTests: XCTestCase {
         wait(for: [promise], timeout: 8)
     }
 
-    
     func testFetchUserTimelineSuccess() {
         // 1. given
         let requestParams: [TimelineRequestParams: Any] = sut.getRequestParameters(screen_name: "randikachan")

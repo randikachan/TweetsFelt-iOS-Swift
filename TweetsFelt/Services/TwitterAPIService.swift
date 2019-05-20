@@ -24,7 +24,8 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue,
                                 httpMethod: .post,
                                 parameters: ["grant_type": "client_credentials"],
-                                headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))
+                                headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret),
+                                type: TokenResponse.self)
 
         // execute(endpoint, completion: completion)
         execute(endpoint) { (jsonResponse, jsonError) in
@@ -37,7 +38,7 @@ class TwitterAPIService : NetworkClient {
         }
     }
     
-    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping WebServiceResponse) {
+    func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping (InvalidateTokenResponse?, TwitterErrorResponse?) -> Void) {
         
         var headers = generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret)
         headers["Accept"] = "*/*"
@@ -46,9 +47,18 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_INVALIDATE_TOKEN.rawValue,
                                 httpMethod: .post,
                                 parameters: ["access_token": "\(bearerToken)"],
-                                headers: headers)
+                                headers: headers,
+                                type: InvalidateTokenResponse.self)
         
-        execute(endpoint, completion: completion)
+        // execute(endpoint, completion: completion)
+        execute(endpoint) { (jsonResponse, jsonError) in
+            if jsonResponse != nil {
+                let response = InvalidateTokenResponse(JSON: jsonResponse![0])
+                completion(response, nil)
+            } else {
+                completion(nil, jsonError)
+            }
+        }
     }
     
     func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping ([Tweet]?, TwitterErrorResponse?) -> Void) {
@@ -76,7 +86,8 @@ class TwitterAPIService : NetworkClient {
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
                                 httpMethod: .get,
                                 parameters: parameters,
-                                headers: headers)
+                                headers: headers,
+                                type: [Tweet].self)
         
         // execute(endpoint, completion: completion)
         
