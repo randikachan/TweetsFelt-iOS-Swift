@@ -34,14 +34,16 @@ class TweetsFeltTests: XCTestCase {
         let promise = expectation(description: "Able to get an Access Token successfully")
         
         // 2. when
-        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (json, jsonError) in
+        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (tokenResponse, jsonError) in
             // 3. then
             if let error = jsonError {
                 XCTFail("Error: \(String(describing: error.error?.localizedDescription))")
                 return
-            } else if let response = TokenResponse(JSON: json![0]) {
-                if response.token_type != nil && response.access_token != nil {
-                    print("Received Bearer Token: \(response.access_token ?? "nil")")
+            } else if tokenResponse != nil {
+                if tokenResponse!.token_type != nil && tokenResponse!.access_token != nil {
+                    print("Received Bearer Token: \(tokenResponse?.access_token ?? "nil")")
+                    XCTAssertEqual(tokenResponse!.token_type, "bearer")
+                    XCTAssertNotNil(tokenResponse!.access_token)
                     promise.fulfill()
                 } else {
                     XCTFail("Get Access Token Failed: \(jsonError?.error?.localizedDescription ?? "nil")")
@@ -61,7 +63,7 @@ class TweetsFeltTests: XCTestCase {
         let promise = expectation(description: "Get an Access Token won't be succeed")
         
         // 2. when
-        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (json, jsonError) in
+        sut.getBearerToken(api_key: api_key, api_secret: api_secret) { (tokenResponse, jsonError) in
             // 3. then
             if let errors = jsonError?.errors {
                 if let firstError = errors.first {
@@ -69,11 +71,9 @@ class TweetsFeltTests: XCTestCase {
                 }
                 promise.fulfill()
                 return
-            } else if let response = TokenResponse(JSON: json![0]) {
-                if response.token_type != nil {
-                    print("Was able to get a token with: \(String(describing: response.token_type))")
-                    XCTFail("Was able to get a token with: \(String(describing: response.token_type))")
-                }
+            } else if tokenResponse != nil && tokenResponse!.token_type != nil {
+                print("Was able to get a token with: \(String(describing: tokenResponse!.token_type))")
+                XCTFail("Was able to get a token with: \(String(describing: tokenResponse!.token_type))")
             }
         }
         
@@ -89,24 +89,24 @@ class TweetsFeltTests: XCTestCase {
         let promise = expectation(description: "Have at least 1 Tweet in the Timeline for the given screen_name: randikachan")
         
         // 2. when
-            sut.fetchUserTimelineFor(requestData: requestParams) { (json, jsonError) in
+            sut.fetchUserTimelineFor(requestData: requestParams) { (tweetsArray, jsonError) in
             
             // 3. then
                 if let error = jsonError {
                     XCTFail("Error: \(String(describing: error.error?.localizedDescription))")
                     return
-                } else if let response = Mapper<Tweet>().mapArray(JSONObject: json) {
-                    if response.count > 1 {
-                        print("Tweets Count: \(response.count)")
+                } else if tweetsArray != nil {
+                    if tweetsArray!.count > 1 {
+                        print("Tweets Count: \(tweetsArray!.count)")
                         promise.fulfill()
                     } else {
-                        XCTFail("Insufficient Tweets Count: \(response.count)")
+                        XCTFail("Insufficient Tweets Count: \(tweetsArray!.count)")
                     }
                 }
             }
         
         // 3. Then
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
     }
     
     func testUserTimelineNotFound() {

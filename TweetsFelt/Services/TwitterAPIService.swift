@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Keys
+import ObjectMapper
 
 class TwitterAPIService : NetworkClient {
     
@@ -17,7 +18,7 @@ class TwitterAPIService : NetworkClient {
     
     let keys = TweetsFeltKeys()
     
-    func getBearerToken(api_key: String, api_secret: String, completion: @escaping WebServiceResponse) {
+    func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, TwitterErrorResponse?) -> Void) {
 
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue,
@@ -25,7 +26,15 @@ class TwitterAPIService : NetworkClient {
                                 parameters: ["grant_type": "client_credentials"],
                                 headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))
 
-        execute(endpoint, completion: completion)
+        // execute(endpoint, completion: completion)
+        execute(endpoint) { (jsonResponse, jsonError) in
+            if jsonResponse != nil {
+                let response = TokenResponse(JSON: jsonResponse![0])
+                completion(response, nil)
+            } else {
+                completion(nil, jsonError)
+            }
+        }
     }
     
     func invalidateBearerToken(api_key: String, api_secret: String, bearerToken: String, completion: @escaping WebServiceResponse) {
@@ -42,7 +51,7 @@ class TwitterAPIService : NetworkClient {
         execute(endpoint, completion: completion)
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping WebServiceResponse) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], bearerToken: String?, completion: @escaping ([Tweet]?, TwitterErrorResponse?) -> Void) {
         var localBearerToken: String
         if bearerToken == nil {
             // TODO: Storing Bearer Token in NSUsserDefaults/Key-chain is not yet implemented
@@ -69,10 +78,15 @@ class TwitterAPIService : NetworkClient {
                                 parameters: parameters,
                                 headers: headers)
         
-        execute(endpoint, completion: completion)
+        // execute(endpoint, completion: completion)
+        
+        execute(endpoint) { (jsonResponse, jsonError) in
+            let tweetsArr = Mapper<Tweet>().mapArray(JSONObject: jsonResponse)
+            completion(tweetsArr, jsonError)
+        }
     }
     
-    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping WebServiceResponse) {
+    func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping ([Tweet]?, TwitterErrorResponse?) -> Void) {
         fetchUserTimelineFor(requestData: requestData, bearerToken: nil, completion: completion)
     }
 
