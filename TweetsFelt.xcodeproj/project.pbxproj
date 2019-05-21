@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202954EC22943A790079806D /* GoogleNLPServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202954EB22943A790079806D /* GoogleNLPServiceTests.swift */; };
 		202DD496229137570052F804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD495229137570052F804 /* AppDelegate.swift */; };
 		202DD49B229137570052F804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202DD499229137570052F804 /* Main.storyboard */; };
 		202DD49D229137570052F804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202DD49C229137570052F804 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		0A249008AFB393A4C8D65A61 /* Pods-TweetsFeltUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFeltUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFeltUITests/Pods-TweetsFeltUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0C5F0733DB9A6CDF45A5BA5D /* Pods-TweetsFelt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetsFelt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TweetsFelt/Pods-TweetsFelt.debug.xcconfig"; sourceTree = "<group>"; };
+		202954EB22943A790079806D /* GoogleNLPServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleNLPServiceTests.swift; sourceTree = "<group>"; };
 		202DD492229137570052F804 /* TweetsFelt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TweetsFelt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202DD495229137570052F804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		202DD49A229137570052F804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				202DD4AA229137580052F804 /* TweetsFeltTests.swift */,
 				202DD4AC229137580052F804 /* Info.plist */,
+				202954EB22943A790079806D /* GoogleNLPServiceTests.swift */,
 			);
 			path = TweetsFeltTests;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				202DD4AB229137580052F804 /* TweetsFeltTests.swift in Sources */,
+				202954EC22943A790079806D /* GoogleNLPServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
