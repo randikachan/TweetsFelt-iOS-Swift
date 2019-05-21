@@ -17,9 +17,9 @@ class GoogleNLPServiceTests: XCTestCase {
     var keys: TweetsFeltKeys!
     let sentimentEmojisArr: Array<String> = ["😃", "😑", "😟"]
     
-    let sadnessContent: String = "I'm really sad, and I feel deep missery!"
-    let neutralContent: String = "Fish Dog Ball Circle Car"
-    let happinessContent: String = "I'm really glad about us Jane! I think everything will be alright in the end. Look at the bright sky."
+    let neutralContent: String = "Fish Dog Ball Circle Car" // Score: 0.0 Magnitude: 0.0
+    let happinessContent: String = "I'm really glad about us Jane! I think everything will be alright in the end. Look at the bright sky."  // Score: 0.1 Magnitude: 0.3
+    let sadnessContent: String = "I'm really sad, and I feel deep missery! I am angry and I might harm someone else! Piss off will you!"    // Score: -0.2 Magnitude: 1.1
     
     override func setUp() {
         sut = GoogleNaturalLangAPIService.shared

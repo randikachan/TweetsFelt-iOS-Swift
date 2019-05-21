@@ -28,12 +28,19 @@ class GoogleNLDocumentSentiment: Mappable {
 extension GoogleNLDocumentSentiment {
     
     public func getMood() -> String {
+        
+        let positiveScoreRange: ClosedRange<Float> = 0.1 ... 1
+        
+        let negativeScoreRange: ClosedRange<Float> = -1 ... -0.1
+        
+        let commonMagnitudeRange: ClosedRange<Float> = 0.0 ... .infinity  // Too negative content when combined with above negatvie Score Range
+        
         if let sentimentScore: Float = score, let sentimentMagnitude: Float = magnitude {
-            if -1 ... 0.0 ~= sentimentScore && sentimentMagnitude > 0.0 {
+            if negativeScoreRange ~= sentimentScore && commonMagnitudeRange ~= sentimentMagnitude {
                 return sentimentEmojisArr[2]    // Sadness
-            } else if 0.0 ~= sentimentScore && 0.0 ~= sentimentMagnitude {
+            } else if (0 == sentimentScore)  && 0.0 == sentimentMagnitude {
                 return sentimentEmojisArr[1]    // Nutral
-            } else if 00 ... 1 ~= sentimentScore && sentimentMagnitude > 0.0 {
+            } else if positiveScoreRange ~= sentimentScore && commonMagnitudeRange ~= sentimentMagnitude {
                 return sentimentEmojisArr[0]    // Happiness
             }
         }
