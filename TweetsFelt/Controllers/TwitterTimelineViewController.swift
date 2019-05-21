@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Keys
 import ObjectMapper
+import Alamofire
 
 class TwitterTimelineViewController: UIViewController {
 
@@ -63,14 +64,21 @@ class TwitterTimelineViewController: UIViewController {
         }
         
         let googleAPIService = GoogleNaturalLangAPIService.shared
-        let documentRequestObj = GoogleNLPDocumentRequest(JSONString: "{\n  \"document\":{\n    \"type\":\"PLAIN_TEXT\",\n    \"language\": \"EN\",\n    \"content\":\"Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️ It’s fcuking annoying!\"\n  },\n  \"encodingType\":\"UTF8\"\n}")
+
+        let documentRequest: Parameters = ["document": [
+            "type": "PLAIN_TEXT",
+            "language": "EN",
+            "content": "Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️ It’s fcuking annoying!"
+            ],
+                                              "encodingType": "UTF8"]
         
-        googleAPIService.analyzeDocument(documentRequest: documentRequestObj!) { (googleSentimentObj, googleSentimentArr, baseError) in
+        googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
             if googleSentimentObj != nil {
                 print("document magnitude: \(googleSentimentObj?.documentSentiment?.magnitude)")
                 print("document score: \(googleSentimentObj?.documentSentiment?.score)")
             } else if baseError != nil {
                 print("analyzeDocument Error: \(baseError?.googleNLPError)")
+                print("analyzeDocument Error: \(baseError?.error?.localizedDescription)")
             }
         }
     }

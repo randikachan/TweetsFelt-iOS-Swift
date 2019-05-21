@@ -12,7 +12,7 @@ import Alamofire
 
 class NetworkClient: NetworkProtocol {
 
-    private let enable_logs = true
+    private let enable_logs = false
     
     func execute<Type>(_ endpoint: Endpoint, completion: @escaping (Type?, [Type]?, BaseAPIError?) -> Void) where Type: BaseMappable
     {
@@ -38,8 +38,12 @@ class NetworkClient: NetworkProtocol {
                             baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: googleError)
                             baseError!.error = response.error
                         }
-                        baseError!.message = response.error?.localizedDescription
-
+                        if baseError == nil {
+                            baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: nil)
+                        }
+                        baseError!.error = error
+                        baseError!.message = error.localizedDescription
+                        
                         completion(nil, nil, baseError)
                     } else {
                         let baseError = BaseAPIError(twitterErrorResponse: nil, googleNLPErrorResponse: nil)
@@ -61,10 +65,13 @@ class NetworkClient: NetworkProtocol {
                     }
                 } else if let jsonObject = response.result.value as? Dictionary<String, Any> {
                     let decodedObject = Mapper<Type>().map(JSONObject: jsonObject)
+                    if self.enable_logs {
+                        print("JSON Obj 1: \(decodedObject?.toJSONString())")
+                    }
                     completion(decodedObject, nil, nil)
                     
                     if self.enable_logs {
-                        print("JSON ARR: \(String(describing: decodedObject))")
+                        print("JSON Obj: \(String(describing: decodedObject))")
                     }
                 } else {
                     print("response.result.value: \(String(describing: response.result.value))")

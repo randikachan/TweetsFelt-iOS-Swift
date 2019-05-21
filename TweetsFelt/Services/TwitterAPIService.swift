@@ -21,7 +21,7 @@ class TwitterAPIService : NetworkClient {
     func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, [TokenResponse]?, BaseAPIError?) -> Void) {
 
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
-                                path: NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue,
+                                path: "\(NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue)?grant_type=client_credentials",
                                 httpMethod: .post,
                                 parameters: ["grant_type": "client_credentials"],
                                 headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))

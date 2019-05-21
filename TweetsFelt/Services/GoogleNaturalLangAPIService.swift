@@ -18,38 +18,29 @@ class GoogleNaturalLangAPIService: NetworkClient {
     
     let keys = TweetsFeltKeys()
     
-    func analyzeDocument(documentRequest: GoogleNLPDocumentRequest, completion: @escaping (GoogleNLSentimentResponse?, [GoogleNLSentimentResponse]?, BaseAPIError?) -> Void) {
+    func analyzeDocument(document: Parameters, completion: @escaping (GoogleNLSentimentResponse?, [GoogleNLSentimentResponse]?, BaseAPIError?) -> Void) {
         
-        // use bearer token saved in user defaults
-        AppPreferenceService.shared.saveGoogleAPIKey(apiKey: "AIzaSyD3EpwfjzSk5Go_d-A_AmxvDGH4sWMI_I0")
-        let api_key: String = AppPreferenceService.shared.getGoogleAPIKey()!
+        var api_key: String
+        
+        // Check if Google API Key exists or not
+        if AppPreferenceService.shared.getGoogleAPIKey() == nil {
+            // use Google API Key saved in user defaults
+            AppPreferenceService.shared.saveGoogleAPIKey(apiKey: keys.googleWebAPIKey)
+            api_key = keys.googleWebAPIKey
+        } else {
+            api_key = AppPreferenceService.shared.getGoogleAPIKey()!
+        }
     
         var headers: [String: String] = [:]
             headers["Accept"] = "*/*"
             headers["Connection"] = "keep-alive"
             headers["Content-Type"] = "application/json"
-            headers["accept-encoding"] = "gzip, deflate"
-    
-        let scheme = "https"
-        let host = NetworkConstants.GOOGLE_NLP_API_URL.rawValue
-        let path = NetworkConstants.ENDPOINT_DOCUMENT_ANALYZE_SENTIMENT.rawValue
-        let queryItem = URLQueryItem(name: "key", value: api_key)
-        
-        var urlComponents = URLComponents()
-            urlComponents.scheme = scheme
-            urlComponents.host = host
-            urlComponents.path = path
-            urlComponents.queryItems = [queryItem]
-        
-        print(urlComponents.url)
-        if let url = urlComponents.url {
-            
-        }
-        
-        let endpoint = Endpoint(url: urlComponents.url!,
-                                path: "",
+            headers["Accept-Type"] = "application/json"
+
+        let endpoint = Endpoint(url: URL(string: NetworkConstants.GOOGLE_NLP_API_URL.rawValue)!,
+                                path: "\(NetworkConstants.ENDPOINT_DOCUMENT_ANALYZE_SENTIMENT.rawValue)?key=\(api_key)",
                                 httpMethod: .post,
-                                parameters: [:],
+                                parameters: document,
                                 headers: headers)
     
         execute(endpoint, completion: completion)

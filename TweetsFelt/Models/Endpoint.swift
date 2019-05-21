@@ -27,25 +27,29 @@ class Endpoint {
     }
     
     func createRequest() -> DataRequest {
-        let url = self.path.map({ self.url.appendingPathComponent($0) }) ?? self.url
+        var url: URL
+        if self.path != nil {
+            url = URL(string: self.path!, relativeTo: self.url)!
+        } else {
+            url = self.url
+        }
         
         let encodingType : URLEncoding
         
         if self.httpMethod == .get {
             encodingType = URLEncoding.queryString
+            return Alamofire.request(url,
+                                     method: self.httpMethod,
+                                     parameters: parameters,
+                                     encoding: encodingType,
+                                     headers: headers)
         } else {
-            encodingType = URLEncoding.methodDependent
+            return Alamofire.request(url,
+                                     method: self.httpMethod,
+                                     parameters: parameters,
+                                     encoding: JSONEncoding.default,
+                                     headers: headers)
         }
-        
-        let request: DataRequest = Alamofire.request(url,
-                                                     method: self.httpMethod,
-                                                     parameters: parameters,
-                                                     encoding: encodingType,
-                                                     headers: headers)
-        
-        print("Request: \(request.consoleLog())")
-        
-        return request
     }
 }
 

@@ -23,7 +23,8 @@ target 'TweetsFelt' do
       :project => "TweetsFelt",
       :keys => [
         "TwitterConsumerAPIKey",
-        "TwitterConsumerAPISecret"
+        "TwitterConsumerAPISecret",
+        "GoogleWebAPIKey"
       ]}
 
 end

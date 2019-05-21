@@ -11,7 +11,7 @@ import Foundation
 enum NetworkConstants: String {
     // URLs
     case TWITTER_API_URL = "https://api.twitter.com/"
-    case GOOGLE_NLP_API_URL = "language.googleapis.com/"
+    case GOOGLE_NLP_API_URL = "https://language.googleapis.com/"
     
     // Twitter Endpoints
     case ENDPOINT_ACCESS_TOKEN = "oauth2/token"
