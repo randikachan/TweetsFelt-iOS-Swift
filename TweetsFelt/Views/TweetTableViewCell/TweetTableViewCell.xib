@@ -45,6 +45,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4C-A2-4sL">
+                                <rect key="frame" x="-12" y="-8" width="313" height="141"/>
+                                <connections>
+                                    <action selector="analyzeSentimentCellButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zNF-Wc-adC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -60,16 +66,21 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="c4C-A2-4sL" secondAttribute="trailing" constant="3" id="3cQ-nv-g45"/>
                     <constraint firstAttribute="trailing" secondItem="54G-s2-Vd0" secondAttribute="trailing" constant="16" id="8CK-dh-O7U"/>
                     <constraint firstItem="54G-s2-Vd0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="CEq-c6-vgN"/>
+                    <constraint firstItem="c4C-A2-4sL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Krl-XS-KDM"/>
+                    <constraint firstItem="c4C-A2-4sL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="P5K-7Y-P8u"/>
                     <constraint firstItem="54G-s2-Vd0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Xzb-He-Y9e"/>
                     <constraint firstAttribute="bottom" secondItem="fcN-x4-pfn" secondAttribute="bottom" constant="18.5" id="Zqf-KN-uNw"/>
+                    <constraint firstAttribute="bottom" secondItem="c4C-A2-4sL" secondAttribute="bottom" constant="0.5" id="ofi-K5-GrT"/>
                     <constraint firstAttribute="bottom" secondItem="54G-s2-Vd0" secondAttribute="bottom" constant="10.5" id="yKw-FN-cJZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="54G-s2-Vd0" id="bAT-FM-l9N"/>
+                <outlet property="contentCoverBtn" destination="c4C-A2-4sL" id="oWW-8N-6ta"/>
                 <outlet property="sentimentThumbLbl" destination="c4C-B8-DwQ" id="lEy-XO-qwZ"/>
                 <outlet property="tweetTextLbl" destination="fcN-x4-pfn" id="tUe-PH-rBf"/>
             </connections>

@@ -7,12 +7,19 @@
 //
 
 import UIKit
+protocol AnalyzeTweetContentCellDelegate {
+    func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell)
+}
 
 class TweetTableViewCell: UITableViewCell {
 
+    // To identify the cell and update the content accordingly
+    var delegate: AnalyzeTweetContentCellDelegate?
+    
     @IBOutlet weak var sentimentThumbLbl: UILabel!
     @IBOutlet weak var tweetTextLbl: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var contentCoverBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,4 +46,8 @@ class TweetTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func analyzeSentimentCellButtonTapped(_ sender: UIButton) {
+        // call delegate
+        delegate?.analyzeDocumentSentimentAndUpdate(self)
+    }
 }

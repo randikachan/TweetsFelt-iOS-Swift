@@ -17,6 +17,8 @@ class Tweet: Mappable {
     var text: String?
     var user: TwitterUser?
     
+    var sentiment: GoogleNLDocumentSentiment?
+    
     required init?(map: Map) {
     }
     

@@ -62,20 +62,6 @@ class TwitterTimelineViewController: UIViewController {
         } else {
             self.activityIndicator.isHidden = true
         }
-        
-        let googleAPIService = GoogleNaturalLangAPIService.shared
-
-        let documentRequest = googleAPIService.generateDocumentRequestData(content: "Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️")
-        
-        googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
-            if googleSentimentObj != nil {
-                print("document magnitude: \(googleSentimentObj?.documentSentiment?.magnitude)")
-                print("document score: \(googleSentimentObj?.documentSentiment?.score)")
-            } else if baseError != nil {
-                print("analyzeDocument Error: \(baseError?.googleNLPError)")
-                print("analyzeDocument Error: \(baseError?.error?.localizedDescription)")
-            }
-        }
     }
 }
 
@@ -105,11 +91,15 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
         
         cell.clipsToBounds = true
         
+        cell.delegate = self
+        
+        cell.tag = indexPath.item
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // This will turn on `masksToBounds` just before showing the cell
+        // This will turn on `masksToBounds` before the cell is displayed
         cell.contentView.layer.masksToBounds = true
         
         // for smooth scrolling
@@ -119,5 +109,30 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
+    
+    func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell) {
+        
+        if let tweetTextContent = cell.tweetTextLbl.text {
+            let googleAPIService = GoogleNaturalLangAPIService.shared
+            let documentRequest = googleAPIService.generateDocumentRequestData(content: tweetTextContent)
+            
+            googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
+                if googleSentimentObj != nil {
+                    cell.sentimentThumbLbl.text = self.sentimentEmojisArr[2]
+                    self.searchResultTweetsArr[cell.tag].sentiment = googleSentimentObj?.documentSentiment
+                    
+                    print("document magnitude: \(String(describing: googleSentimentObj?.documentSentiment?.magnitude))")
+                    print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
+                    
+                } else if baseError != nil {
+                    print("analyzeDocument Error: \(String(describing: baseError?.googleNLPError))")
+                    print("analyzeDocument Error: \(String(describing: baseError?.error?.localizedDescription))")
+                }
+            }
+        }
     }
 }
