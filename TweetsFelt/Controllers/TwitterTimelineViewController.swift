@@ -62,11 +62,6 @@ class TwitterTimelineViewController: UIViewController {
         } else {
             self.activityIndicator.isHidden = true
         }
-        
-        // Settings Default Value
-        if AppPreferenceService.shared.getFetchTweetsCount() == 0 {
-            AppPreferenceService.shared.saveFetchTweetsCount(count: 20)
-        }
     }
 }
 
@@ -94,6 +89,8 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
         cell.tweetTextLbl.text = self.searchResultTweetsArr[indexPath.item].text
 
         cell.sentimentThumbLbl.text = self.searchResultTweetsArr[indexPath.item].sentiment?.getMood()
+        
+        cell.dateTimeLbl.isHidden = true
         
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         

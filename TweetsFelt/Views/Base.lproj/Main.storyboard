@@ -149,7 +149,7 @@
                                     <action selector="avoidReplyTweetsValueChanged:" destination="JcF-dn-H13" eventType="valueChanged" id="y4P-TJ-gAk"/>
                                 </connections>
                             </switch>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" maximumValue="200" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Md-YV-OLQ">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="20" maximumValue="200" stepValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="3Md-YV-OLQ">
                                 <rect key="frame" x="229" y="64" width="94" height="29"/>
                                 <connections>
                                     <action selector="tweetsCountStepperValueChanged:" destination="JcF-dn-H13" eventType="valueChanged" id="bDg-s7-YB5"/>
@@ -194,6 +194,7 @@
                         <outlet property="avoidReplyTweetsSwitch" destination="2u8-kG-Wsu" id="Tnv-ae-Cz2"/>
                         <outlet property="avoidRetweetsSwitch" destination="72r-rq-QtW" id="MWD-ZD-UF5"/>
                         <outlet property="tweetsCountLbl" destination="zzP-Sh-bNH" id="gwC-lj-10u"/>
+                        <outlet property="tweetsCountStepper" destination="3Md-YV-OLQ" id="XZr-9q-e9D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXH-1C-qEu" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -81,6 +81,7 @@
             <connections>
                 <outlet property="containerView" destination="54G-s2-Vd0" id="bAT-FM-l9N"/>
                 <outlet property="contentCoverBtn" destination="c4C-A2-4sL" id="oWW-8N-6ta"/>
+                <outlet property="dateTimeLbl" destination="cCm-1T-Ybv" id="e01-CG-3g0"/>
                 <outlet property="sentimentThumbLbl" destination="c4C-B8-DwQ" id="lEy-XO-qwZ"/>
                 <outlet property="tweetTextLbl" destination="fcN-x4-pfn" id="tUe-PH-rBf"/>
             </connections>

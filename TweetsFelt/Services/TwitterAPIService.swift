@@ -59,10 +59,10 @@ class TwitterAPIService : NetworkClient {
             headers["Authorization"] = "Bearer \(localBearerToken)"
         
         var parameters: [String: Any] = ["screen_name": requestData[.screen_name] ?? ""]
-            parameters["trim_user"] = requestData[.trim_user] ?? true
-            parameters["exclude_replies"] = requestData[.exclude_replies] ?? true
-            parameters["include_rts"] = requestData[.include_rts] ?? false
-            parameters["count"] = requestData[.count] ?? 20
+            parameters["trim_user"] = requestData[.trim_user] ?? false
+            parameters["exclude_replies"] = AppPreferenceService.shared.getAvoidReplyTweets() ?? true
+            parameters["include_rts"] = AppPreferenceService.shared.getAvoidReTweets() ?? false
+            parameters["count"] = AppPreferenceService.shared.getFetchTweetsCount() ?? 20
         
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,

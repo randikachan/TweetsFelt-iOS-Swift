@@ -20,6 +20,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetTextLbl: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentCoverBtn: UIButton!
+    @IBOutlet weak var dateTimeLbl: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

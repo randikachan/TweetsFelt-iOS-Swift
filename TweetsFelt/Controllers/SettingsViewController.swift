@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tweetsCountLbl: UILabel!
     @IBOutlet weak var avoidRetweetsSwitch: UISwitch!
     @IBOutlet weak var avoidReplyTweetsSwitch: UISwitch!
+    @IBOutlet weak var tweetsCountStepper: UIStepper!
     
     // Should come from App Preferences
     var tweetsCount: Int = 20
@@ -23,28 +24,34 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tweetsCountLbl.text = String(AppPreferenceService.shared.getFetchTweetsCount() ?? 20)
+        self.tweetsCount = AppPreferenceService.shared.getFetchTweetsCount() ?? 20
+        self.tweetsCountLbl.text = String(tweetsCount)
+        self.tweetsCountStepper.value = Double(self.tweetsCount)
+        
         self.avoidRetweetsSwitch.setOn(AppPreferenceService.shared.getAvoidReTweets() ?? false, animated: false)
+        self.avoidRetweets = AppPreferenceService.shared.getAvoidReTweets() ?? false
+        
         self.avoidReplyTweetsSwitch.setOn(AppPreferenceService.shared.getAvoidReplyTweets() ?? false, animated: false)
+        self.avoidReplyTweets = AppPreferenceService.shared.getAvoidReplyTweets() ?? false
     }
     
     @IBAction func tweetsCountStepperValueChanged(_ sender: UIStepper) {
-        tweetsCount = Int(sender.value)
+        self.tweetsCount = Int(sender.value)
         self.tweetsCountLbl.text = String(tweetsCount)
     }
     
     @IBAction func avoidRetweetsSwitchValueChanged(_ sender: UISwitch) {
-        avoidRetweets = sender.isOn
+        self.avoidRetweets = sender.isOn
     }
     
     @IBAction func avoidReplyTweetsValueChanged(_ sender: UISwitch) {
-        avoidReplyTweets = sender.isOn
+        self.avoidReplyTweets = sender.isOn
     }
     
     @IBAction func saveBtnClicked(_ sender: UIButton) {
         AppPreferenceService.shared.saveFetchTweetsCount(count: self.tweetsCount)
-        AppPreferenceService.shared.saveAvoidReTweets(avoidReTweets: avoidRetweets)
-        AppPreferenceService.shared.saveAvoidReplyTweets(avoidReplyTweets: avoidReplyTweets)
+        AppPreferenceService.shared.saveAvoidReTweets(avoidReTweets: self.avoidRetweets)
+        AppPreferenceService.shared.saveAvoidReplyTweets(avoidReplyTweets: self.avoidReplyTweets)
     }
     
 }
