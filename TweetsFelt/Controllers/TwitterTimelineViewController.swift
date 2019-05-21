@@ -62,6 +62,11 @@ class TwitterTimelineViewController: UIViewController {
         } else {
             self.activityIndicator.isHidden = true
         }
+        
+        // Settings Default Value
+        if AppPreferenceService.shared.getFetchTweetsCount() == 0 {
+            AppPreferenceService.shared.saveFetchTweetsCount(count: 20)
+        }
     }
 }
 
@@ -113,11 +118,6 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
-
-// MARK: - Custom Settings Action
-extension TwitterTimelineViewController {
-    
 }
 
 // MARK: - Custom UITableViewCell Delegate

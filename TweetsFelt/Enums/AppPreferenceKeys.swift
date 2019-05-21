@@ -13,4 +13,8 @@ enum AppPreferenceKeys: String {
     case bearerToken
     case last_screen_name
     case googleAPIKey
+    case avoidReplyTweets
+    case avoidReTweets
+    case tweetsCount
+    
 }

@@ -23,9 +23,9 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tweetsCountLbl.text = "20"
-        avoidRetweetsSwitch.setOn(false, animated: false)
-        avoidReplyTweetsSwitch.setOn(false, animated: false)
+        self.tweetsCountLbl.text = String(AppPreferenceService.shared.getFetchTweetsCount() ?? 20)
+        self.avoidRetweetsSwitch.setOn(AppPreferenceService.shared.getAvoidReTweets() ?? false, animated: false)
+        self.avoidReplyTweetsSwitch.setOn(AppPreferenceService.shared.getAvoidReplyTweets() ?? false, animated: false)
     }
     
     @IBAction func tweetsCountStepperValueChanged(_ sender: UIStepper) {
@@ -42,6 +42,9 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func saveBtnClicked(_ sender: UIButton) {
+        AppPreferenceService.shared.saveFetchTweetsCount(count: self.tweetsCount)
+        AppPreferenceService.shared.saveAvoidReTweets(avoidReTweets: avoidRetweets)
+        AppPreferenceService.shared.saveAvoidReplyTweets(avoidReplyTweets: avoidReplyTweets)
     }
     
 }
