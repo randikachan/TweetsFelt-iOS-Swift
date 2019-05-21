@@ -65,12 +65,7 @@ class TwitterTimelineViewController: UIViewController {
         
         let googleAPIService = GoogleNaturalLangAPIService.shared
 
-        let documentRequest: Parameters = ["document": [
-            "type": "PLAIN_TEXT",
-            "language": "EN",
-            "content": "Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️ It’s fcuking annoying!"
-            ],
-                                              "encodingType": "UTF8"]
+        let documentRequest = googleAPIService.generateDocumentRequestData(content: "Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️")
         
         googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
             if googleSentimentObj != nil {

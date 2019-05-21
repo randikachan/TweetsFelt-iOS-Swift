@@ -46,3 +46,17 @@ class GoogleNaturalLangAPIService: NetworkClient {
         execute(endpoint, completion: completion)
     }
 }
+
+extension GoogleNaturalLangAPIService {
+    
+    func generateDocumentRequestData(content: String) -> Parameters {
+        let parameters: Parameters = ["document": [
+            "type": "PLAIN_TEXT",
+            "language": "EN",
+            "content": content
+            ],
+          "encodingType": "UTF8"]
+        
+        return parameters
+    }
+}
