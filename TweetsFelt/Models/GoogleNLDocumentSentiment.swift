@@ -11,7 +11,7 @@ import ObjectMapper
 
 class GoogleNLDocumentSentiment: Mappable {
     
-    let sentimentEmojisArr: Array<String> = ["😃", "😐", "😟"]
+    let sentimentEmojisArr: Array<String> = ["😃", "😑", "😟"]
     
     var magnitude: Float?
     var score: Float?
@@ -27,14 +27,14 @@ class GoogleNLDocumentSentiment: Mappable {
 
 extension GoogleNLDocumentSentiment {
     
-    func getMood() -> String {
+    public func getMood() -> String {
         if let sentimentScore: Float = score, let sentimentMagnitude: Float = magnitude {
-            if 0.0 ... 1 ~= sentimentScore && sentimentMagnitude > 0.0 {
-                return sentimentEmojisArr[0]
-            } else if 0.0 ... 0.9 ~= sentimentScore && 0.0 ... 1 ~= sentimentMagnitude {
-                return sentimentEmojisArr[1]
-            } else if -1 ... 0.0 ~= sentimentScore && sentimentMagnitude > 0.0 {
-                return sentimentEmojisArr[2]
+            if -1 ... 0.0 ~= sentimentScore && sentimentMagnitude > 0.0 {
+                return sentimentEmojisArr[2]    // Sadness
+            } else if 0.0 ~= sentimentScore && 0.0 ~= sentimentMagnitude {
+                return sentimentEmojisArr[1]    // Nutral
+            } else if 00 ... 1 ~= sentimentScore && sentimentMagnitude > 0.0 {
+                return sentimentEmojisArr[0]    // Happiness
             }
         }
         

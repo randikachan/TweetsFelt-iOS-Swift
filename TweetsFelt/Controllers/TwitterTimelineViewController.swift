@@ -23,7 +23,7 @@ class TwitterTimelineViewController: UIViewController {
     
     
     var searchResultTweetsArr: [Tweet] = []
-    let sentimentEmojisArr: Array<String> = ["😃", "😐", "😟"]
+    let sentimentEmojisArr: Array<String> = ["😃", "😑", "😟"]
     
     lazy var tapRecognizer: UITapGestureRecognizer = {
         var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
