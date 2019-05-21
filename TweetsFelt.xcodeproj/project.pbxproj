@@ -22,6 +22,7 @@
 		202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4D9229167380052F804 /* TwitterAPIService.swift */; };
 		202DD4DE22917E8E0052F804 /* Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202DD4DD22917E8E0052F804 /* Keys.framework */; };
 		202DD4DF22917EAB0052F804 /* Keys.framework in Sources */ = {isa = PBXBuildFile; fileRef = 202DD4DD22917E8E0052F804 /* Keys.framework */; };
+		2030DAF322947939003B5334 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030DAF222947939003B5334 /* SettingsViewController.swift */; };
 		204C66A222918F9400CBAA2D /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66A122918F9400CBAA2D /* NetworkConstants.swift */; };
 		204C66A42291B21500CBAA2D /* TwitterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66A32291B21500CBAA2D /* TwitterError.swift */; };
 		204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AB2292004A00CBAA2D /* TwitterUser.swift */; };
@@ -89,6 +90,7 @@
 		202DD4D9229167380052F804 /* TwitterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterAPIService.swift; sourceTree = "<group>"; };
 		202DD4DB22917DDE0052F804 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		202DD4DD22917E8E0052F804 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2030DAF222947939003B5334 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		204C66A122918F9400CBAA2D /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		204C66A32291B21500CBAA2D /* TwitterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterError.swift; sourceTree = "<group>"; };
 		204C66AB2292004A00CBAA2D /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				2090A6A72292C919007FBF1C /* TwitterTimelineViewController.swift */,
 				20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */,
+				2030DAF222947939003B5334 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				202DD496229137570052F804 /* AppDelegate.swift in Sources */,
 				2090A6A422929798007FBF1C /* AppPreferenceKeys.swift in Sources */,
 				202DD4D62291628A0052F804 /* NetworkClient.swift in Sources */,
+				2030DAF322947939003B5334 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

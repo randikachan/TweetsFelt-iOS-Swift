@@ -66,7 +66,7 @@ class NetworkClient: NetworkProtocol {
                 } else if let jsonObject = response.result.value as? Dictionary<String, Any> {
                     let decodedObject = Mapper<Type>().map(JSONObject: jsonObject)
                     if self.enable_logs {
-                        print("JSON Obj 1: \(decodedObject?.toJSONString())")
+                        print("JSON Obj 1: \(String(describing: decodedObject?.toJSONString()))")
                     }
                     completion(decodedObject, nil, nil)
                     
