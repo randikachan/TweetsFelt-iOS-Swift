@@ -38,11 +38,11 @@ extension GoogleNLDocumentSentiment {
         let commonMagnitudeRange: ClosedRange<Float> = 0.0 ... .infinity  // Too negative content when combined with above negatvie Score Range
         
         if let sentimentScore: Float = score, let sentimentMagnitude: Float = magnitude {
-            if negativeScoreRange ~= sentimentScore && commonMagnitudeRange ~= sentimentMagnitude {
+            if negativeScoreRange.contains(sentimentScore) && commonMagnitudeRange.contains(sentimentMagnitude) {
                 return sentimentEmojisArr[2]    // Sadness
-            } else if neutralScoreRange ~= sentimentScore || sentimentMagnitude ~= 0.0 {
+            } else if neutralScoreRange.contains(sentimentScore) || sentimentMagnitude ~= 0.0 {
                 return sentimentEmojisArr[1]    // Nutral
-            } else if positiveScoreRange ~= sentimentScore && commonMagnitudeRange ~= sentimentMagnitude {
+            } else if positiveScoreRange.contains(sentimentScore) && commonMagnitudeRange.contains(sentimentMagnitude) {
                 return sentimentEmojisArr[0]    // Happiness
             }
         }
