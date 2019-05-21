@@ -90,8 +90,6 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
 
         cell.sentimentThumbLbl.text = self.searchResultTweetsArr[indexPath.item].sentiment?.getMood()
         
-        cell.dateTimeLbl.isHidden = true
-        
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         
         cell.clipsToBounds = true
