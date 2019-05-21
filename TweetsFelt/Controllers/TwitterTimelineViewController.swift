@@ -85,7 +85,10 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
         cell.sentimentThumbLbl.backgroundColor = UIColor.clear
         
         cell.tweetTextLbl.backgroundColor = UIColor.clear
+        
         cell.tweetTextLbl.text = self.searchResultTweetsArr[indexPath.item].text
+
+        cell.sentimentThumbLbl.text = self.searchResultTweetsArr[indexPath.item].sentiment?.getMood()
         
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         
@@ -115,22 +118,16 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
 extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
     
     func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell) {
-        
         if let tweetTextContent = cell.tweetTextLbl.text {
             let googleAPIService = GoogleNaturalLangAPIService.shared
             let documentRequest = googleAPIService.generateDocumentRequestData(content: tweetTextContent)
             
             googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
                 if googleSentimentObj != nil {
-                    cell.sentimentThumbLbl.text = self.sentimentEmojisArr[2]
+                    cell.sentimentThumbLbl.text = googleSentimentObj?.documentSentiment?.getMood()
                     self.searchResultTweetsArr[cell.tag].sentiment = googleSentimentObj?.documentSentiment
-                    
-                    print("document magnitude: \(String(describing: googleSentimentObj?.documentSentiment?.magnitude))")
-                    print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
-                    
                 } else if baseError != nil {
-                    print("analyzeDocument Error: \(String(describing: baseError?.googleNLPError))")
-                    print("analyzeDocument Error: \(String(describing: baseError?.error?.localizedDescription))")
+                    cell.sentimentThumbLbl.text = "⁉️"
                 }
             }
         }
