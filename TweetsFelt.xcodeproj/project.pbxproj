@@ -180,7 +180,6 @@
 				202DD4C42291517F0052F804 /* Controllers */,
 				202DD4C9229151F50052F804 /* Models */,
 				202DD4C6229151CF0052F804 /* Views */,
-				202DD4C5229151AB0052F804 /* ViewModels */,
 				202DD4CA2291523D0052F804 /* Services */,
 				202DD4CB229152D80052F804 /* Enums */,
 				202DD4C8229151E70052F804 /* Resources */,
@@ -224,13 +223,6 @@
 				20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		202DD4C5229151AB0052F804 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		202DD4C6229151CF0052F804 /* Views */ = {

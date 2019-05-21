@@ -115,6 +115,13 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
     }
 }
 
+// MARK: - Custom Settings Action
+extension TwitterTimelineViewController {
+    
+}
+
+// MARK: - Custom UITableViewCell Delegate
+
 extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
     
     func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell) {
