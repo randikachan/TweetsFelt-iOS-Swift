@@ -84,6 +84,7 @@ Networking - Alamofire    | Check following list of files: <br/>- `Network\Netwo
 | Controllers             | You can find them on its folder `Controller`
 |App Preferences          | Used a simple Singleton class to keep the `NSUserDefaults` managed.
 |Authentication           | For Twitter web API, to fetch the Twitter timeline for a given screen-name it uses Bearer Token. In order to get the Bearer Token we need two more needs which is identical for our Twitter App, which are Consumer API Key and the Secret Key. <br/> Then for Google Natural Language we need to have that service enabled in Google Cloud console and have a valid Google API Key. Non of these keys are stored within the project sourcecode. 
+|Tests                    | UnitTests has full coverage for all the API calls `TwitterAPIService` and `GoogleNaturalLangAPIService`. Would love to write UI Tests, but not enough time I could find.
 
 
 #### Note:
