@@ -38,6 +38,7 @@
 		2090A6AF2292E974007FBF1C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6AE2292E974007FBF1C /* Helper.swift */; };
 		2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */; };
 		2090A6B622931276007FBF1C /* TimelineHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */; };
+		20E455B42296003700947432 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E455B32296003700947432 /* Emojies.swift */; };
 		20F0CB0222932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */; };
 		20F0CB04229342A300F19005 /* GoogleNLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F0CB03229342A300F19005 /* GoogleNLPError.swift */; };
 		20F0CB06229347D100F19005 /* GoogleNLPDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F0CB05229347D100F19005 /* GoogleNLPDocument.swift */; };
@@ -106,6 +107,7 @@
 		2090A6AE2292E974007FBF1C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		20E455B32296003700947432 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
 		20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterTimeline+SearchBarDelegate.swift"; sourceTree = "<group>"; };
 		20F0CB03229342A300F19005 /* GoogleNLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleNLPError.swift; sourceTree = "<group>"; };
 		20F0CB05229347D100F19005 /* GoogleNLPDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleNLPDocument.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				202DD4CC229152EE0052F804 /* TimelineRequestParams.swift */,
 				2090A6A322929798007FBF1C /* AppPreferenceKeys.swift */,
+				20E455B32296003700947432 /* Emojies.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */,
 				202DD4CD229152EE0052F804 /* TimelineRequestParams.swift in Sources */,
 				202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */,
+				20E455B42296003700947432 /* Emojies.swift in Sources */,
 				204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */,
 				202DD4D12291532D0052F804 /* Endpoint.swift in Sources */,
 				20F0CB0D22934EFA00F19005 /* BaseAPIError.swift in Sources */,

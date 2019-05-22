@@ -12,10 +12,9 @@ import ObjectMapper
 @testable import TweetsFelt
 
 class GoogleNLPServiceTests: XCTestCase {
-
+    
     var sut: GoogleNaturalLangAPIService!
     var keys: TweetsFeltKeys!
-    let sentimentEmojisArr: Array<String> = ["😃", "😑", "😟"]
     
     let neutralContent: String = "Fish Dog Ball Circle Car" // Score: 0.0 Magnitude: 0.0
     let happinessContent: String = "I'm really glad about us Jane! I think everything will be alright in the end. Look at the bright sky."  // Score: 0.1 Magnitude: 0.3
@@ -25,12 +24,12 @@ class GoogleNLPServiceTests: XCTestCase {
         sut = GoogleNaturalLangAPIService.shared
         keys = TweetsFeltKeys()
     }
-
+    
     override func tearDown() {
         sut = nil
         keys = nil
     }
-
+    
     func testGoogleNLP_AnalyzeDocumentSentimentCall() {
         // 1. given
         let documentRequest = sut.generateDocumentRequestData(content: "Damn! Why I had to sit next to this guy who watches YouTube videos on youtube mobile site using Safari browser on an iPhone 8? 😳😣😖😒☹️")
@@ -75,9 +74,9 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertEqual(sentimentObj.getMood(), self.sentimentEmojisArr[2])
+                    XCTAssertEqual(sentimentObj.getMood(), Emojies.sadnessEmoji.rawValue)
                 }
-
+                
                 promise.fulfill()
             }
         }
@@ -105,7 +104,7 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertNotEqual(sentimentObj.getMood(), self.sentimentEmojisArr[2])
+                    XCTAssertNotEqual(sentimentObj.getMood(), Emojies.sadnessEmoji.rawValue)
                 }
                 
                 promise.fulfill()
@@ -135,7 +134,7 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertEqual(sentimentObj.getMood(), self.sentimentEmojisArr[1])
+                    XCTAssertEqual(sentimentObj.getMood(), Emojies.neutralEmoji.rawValue)
                 }
                 
                 promise.fulfill()
@@ -165,7 +164,7 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertNotEqual(sentimentObj.getMood(), self.sentimentEmojisArr[1])
+                    XCTAssertNotEqual(sentimentObj.getMood(), Emojies.neutralEmoji.rawValue)
                 }
                 
                 promise.fulfill()
@@ -195,7 +194,7 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertEqual(sentimentObj.getMood(), self.sentimentEmojisArr[0])
+                    XCTAssertEqual(sentimentObj.getMood(), Emojies.happinessEmoji.rawValue)
                 }
                 
                 promise.fulfill()
@@ -225,7 +224,7 @@ class GoogleNLPServiceTests: XCTestCase {
                 print("document score: \(String(describing: googleSentimentObj?.documentSentiment?.score))")
                 
                 if let sentimentObj: GoogleNLDocumentSentiment = googleSentimentObj?.documentSentiment {
-                    XCTAssertNotEqual(sentimentObj.getMood(), self.sentimentEmojisArr[0])
+                    XCTAssertNotEqual(sentimentObj.getMood(), Emojies.happinessEmoji.rawValue)
                 }
                 
                 promise.fulfill()
@@ -235,5 +234,5 @@ class GoogleNLPServiceTests: XCTestCase {
         // 3. Then
         wait(for: [promise], timeout: 5)
     }
-
+    
 }

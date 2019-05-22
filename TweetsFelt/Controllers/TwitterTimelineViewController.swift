@@ -13,7 +13,7 @@ import ObjectMapper
 import Alamofire
 
 class TwitterTimelineViewController: UIViewController {
-
+    
     let keys = TweetsFeltKeys()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -21,9 +21,7 @@ class TwitterTimelineViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var statusLbl: UILabel!
     
-    
     var searchResultTweetsArr: [Tweet] = []
-    let sentimentEmojisArr: Array<String> = ["😃", "😑", "😟"]
     
     lazy var tapRecognizer: UITapGestureRecognizer = {
         var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
@@ -44,7 +42,7 @@ class TwitterTimelineViewController: UIViewController {
         activityIndicator.isHidden = false
         tableView.isHidden = true
         self.statusLbl.text = "Search for a Twitter Screen Name to View and Feel its Timeline!"
-
+        
         // Check if Bearer token exists or not
         if AppPreferenceService.shared.getBearerToken() == nil {
             // If not get Bearer token and save it
@@ -68,7 +66,7 @@ class TwitterTimelineViewController: UIViewController {
 // MARK: - UITableView
 
 extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -80,23 +78,7 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
         
-        // At this point, the didSet block will set up the cell's views
-        cell.sentimentThumbLbl.text = sentimentEmojisArr[0]
-        cell.sentimentThumbLbl.backgroundColor = UIColor.clear
-        
-        cell.tweetTextLbl.backgroundColor = UIColor.clear
-        
-        cell.tweetTextLbl.text = self.searchResultTweetsArr[indexPath.item].text
-
-        cell.sentimentThumbLbl.text = self.searchResultTweetsArr[indexPath.item].sentiment?.getMood()
-        
-        cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
-        
-        cell.clipsToBounds = true
-        
-        cell.delegate = self
-        
-        cell.tag = indexPath.item
+        cell.configureCellFor(tweet: self.searchResultTweetsArr[indexPath.item], delegate: self, tag: indexPath.item)
         
         return cell
     }
@@ -121,13 +103,20 @@ extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
     
     func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell) {
         if let tweetTextContent = cell.tweetTextLbl.text {
+            // Activity Indicator
+            cell.activityIndicator.isHidden = false
+            
+            // Prepare the document and the API call
             let googleAPIService = GoogleNaturalLangAPIService.shared
             let documentRequest = googleAPIService.generateDocumentRequestData(content: tweetTextContent)
             
             googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
+                // Hide the activity Indicator
+                
+                cell.activityIndicator.isHidden = true
                 if googleSentimentObj != nil {
-                    cell.sentimentThumbLbl.text = googleSentimentObj?.documentSentiment?.getMood()
                     self.searchResultTweetsArr[cell.tag].sentiment = googleSentimentObj?.documentSentiment
+                    cell.sentimentThumbLbl.text = googleSentimentObj?.documentSentiment?.getMood()
                 } else if baseError != nil {
                     cell.sentimentThumbLbl.text = "⁉️"
                 }

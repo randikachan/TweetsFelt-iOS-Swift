@@ -20,6 +20,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetTextLbl: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentCoverBtn: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,4 +51,18 @@ class TweetTableViewCell: UITableViewCell {
         // call delegate
         delegate?.analyzeDocumentSentimentAndUpdate(self)
     }
+    
+    // Customize and update the cell with data
+    func configureCellFor(tweet: Tweet, delegate: AnalyzeTweetContentCellDelegate?, tag: Int) {
+        self.sentimentThumbLbl.backgroundColor = UIColor.clear
+        self.tweetTextLbl.backgroundColor = UIColor.clear
+        self.tweetTextLbl.text = tweet.text
+        self.sentimentThumbLbl.text = tweet.sentiment?.getMood()
+        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
+        self.clipsToBounds = true
+        
+        self.delegate = delegate
+        self.tag = tag
+    }
+
 }

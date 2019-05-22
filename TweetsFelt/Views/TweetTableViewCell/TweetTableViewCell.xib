@@ -22,6 +22,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54G-s2-Vd0">
                         <rect key="frame" x="16" y="11" width="288" height="123"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="xbY-dd-V8S">
+                                <rect key="frame" x="258" y="6" width="20" height="20"/>
+                                <color key="color" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4C-B8-DwQ">
                                 <rect key="frame" x="257" y="5" width="23" height="21"/>
                                 <constraints>
@@ -50,7 +54,9 @@
                         <constraints>
                             <constraint firstItem="fcN-x4-pfn" firstAttribute="leading" secondItem="54G-s2-Vd0" secondAttribute="leading" constant="14" id="387-Op-mmW"/>
                             <constraint firstItem="c4C-B8-DwQ" firstAttribute="top" secondItem="54G-s2-Vd0" secondAttribute="top" constant="5" id="5EL-6u-psA"/>
+                            <constraint firstItem="xbY-dd-V8S" firstAttribute="top" secondItem="c4C-B8-DwQ" secondAttribute="bottom" constant="-20" id="ZtW-tA-Vw9"/>
                             <constraint firstItem="fcN-x4-pfn" firstAttribute="top" secondItem="54G-s2-Vd0" secondAttribute="top" constant="8" id="cfC-vA-43h"/>
+                            <constraint firstItem="c4C-B8-DwQ" firstAttribute="leading" secondItem="xbY-dd-V8S" secondAttribute="trailing" constant="-21" id="kD7-7c-Nij"/>
                             <constraint firstAttribute="trailing" secondItem="fcN-x4-pfn" secondAttribute="trailing" constant="34" id="rJv-Hh-VLp"/>
                             <constraint firstAttribute="trailing" secondItem="c4C-B8-DwQ" secondAttribute="trailing" constant="8" id="xHA-rx-wwN"/>
                         </constraints>
@@ -70,6 +76,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activityIndicator" destination="xbY-dd-V8S" id="35B-Eg-yaV"/>
                 <outlet property="containerView" destination="54G-s2-Vd0" id="bAT-FM-l9N"/>
                 <outlet property="contentCoverBtn" destination="c4C-A2-4sL" id="oWW-8N-6ta"/>
                 <outlet property="sentimentThumbLbl" destination="c4C-B8-DwQ" id="lEy-XO-qwZ"/>

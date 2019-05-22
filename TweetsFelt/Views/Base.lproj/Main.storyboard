@@ -124,9 +124,6 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72r-rq-QtW">
                                 <rect key="frame" x="274" y="109" width="51" height="31"/>
-                                <connections>
-                                    <action selector="avoidRetweetsSwitchValueChanged:" destination="JcF-dn-H13" eventType="valueChanged" id="wsc-hk-Xoz"/>
-                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMu-Mf-Gj4">
                                 <rect key="frame" x="219" y="216" width="110" height="30"/>
@@ -145,9 +142,6 @@
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2u8-kG-Wsu">
                                 <rect key="frame" x="274" y="154" width="51" height="31"/>
-                                <connections>
-                                    <action selector="avoidReplyTweetsValueChanged:" destination="JcF-dn-H13" eventType="valueChanged" id="y4P-TJ-gAk"/>
-                                </connections>
                             </switch>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="20" maximumValue="200" stepValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="3Md-YV-OLQ">
                                 <rect key="frame" x="229" y="64" width="94" height="29"/>

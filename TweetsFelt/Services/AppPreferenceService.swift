@@ -50,7 +50,7 @@ class AppPreferenceService {
         defaults.synchronize()
     }
     
-    func getAvoidReplyTweets() -> Bool? {
+    func avoidReplyTweets() -> Bool {
         return defaults.bool(forKey: AppPreferenceKeys.avoidReplyTweets.rawValue)
     }
     
@@ -59,7 +59,7 @@ class AppPreferenceService {
         defaults.synchronize()
     }
     
-    func getAvoidReTweets() -> Bool? {
+    func avoidReTweets() -> Bool {
         return defaults.bool(forKey: AppPreferenceKeys.avoidReTweets.rawValue)
     }
     
@@ -68,8 +68,8 @@ class AppPreferenceService {
         defaults.synchronize()
     }
     
-    func getFetchTweetsCount() -> Int? {
+    func getFetchTweetsCount() -> Int {
         return defaults.integer(forKey: AppPreferenceKeys.tweetsCount.rawValue)
     }
-
+    
 }

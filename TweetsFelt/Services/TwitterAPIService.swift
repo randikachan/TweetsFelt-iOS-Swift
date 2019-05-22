@@ -19,13 +19,13 @@ class TwitterAPIService : NetworkClient {
     let keys = TweetsFeltKeys()
     
     func getBearerToken(api_key: String, api_secret: String, completion: @escaping (TokenResponse?, [TokenResponse]?, BaseAPIError?) -> Void) {
-
+        
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: "\(NetworkConstants.ENDPOINT_ACCESS_TOKEN.rawValue)?grant_type=client_credentials",
-                                httpMethod: .post,
-                                parameters: ["grant_type": "client_credentials"],
-                                headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))
-
+            httpMethod: .post,
+            parameters: ["grant_type": "client_credentials"],
+            headers: generateAuthenticationHeaders(api_key: api_key, api_secret: api_secret))
+        
         execute(endpoint, completion: completion)
     }
     
@@ -53,16 +53,16 @@ class TwitterAPIService : NetworkClient {
         }
         
         var headers: [String: String] = [:]
-            headers["Accept"] = "*/*"
-            headers["Connection"] = "close"
-            headers["Content-Type"] = "application/x-www-form-urlencoded"
-            headers["Authorization"] = "Bearer \(localBearerToken)"
+        headers["Accept"] = "*/*"
+        headers["Connection"] = "close"
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        headers["Authorization"] = "Bearer \(localBearerToken)"
         
         var parameters: [String: Any] = ["screen_name": requestData[.screen_name] ?? ""]
-            parameters["trim_user"] = requestData[.trim_user] ?? false
-            parameters["exclude_replies"] = AppPreferenceService.shared.getAvoidReplyTweets() ?? true
-            parameters["include_rts"] = AppPreferenceService.shared.getAvoidReTweets() ?? false
-            parameters["count"] = AppPreferenceService.shared.getFetchTweetsCount() ?? 20
+        parameters["trim_user"] = requestData[.trim_user]!
+        parameters["exclude_replies"] = AppPreferenceService.shared.avoidReplyTweets()
+        parameters["include_rts"] = AppPreferenceService.shared.avoidReTweets()
+        parameters["count"] = AppPreferenceService.shared.getFetchTweetsCount()
         
         let endpoint = Endpoint(url: URL(string: NetworkConstants.TWITTER_API_URL.rawValue)!,
                                 path: NetworkConstants.ENDPOINT_USER_TIMELINE_STATUSES.rawValue,
@@ -76,7 +76,7 @@ class TwitterAPIService : NetworkClient {
     func fetchUserTimelineFor(requestData: [TimelineRequestParams: Any], completion: @escaping (Tweet?, [Tweet]?, BaseAPIError?) -> Void) {
         fetchUserTimelineFor(requestData: requestData, bearerToken: nil, completion: completion)
     }
-
+    
 }
 
 extension TwitterAPIService {
@@ -102,5 +102,5 @@ extension TwitterAPIService {
         
         return requestParams;
     }
-
+    
 }
