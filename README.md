@@ -77,14 +77,15 @@ What is the key for GoogleWebAPIKey
 
 Specifics                 | Details
 --------------------------|------------------------------------------------------------------------
-Architecture - MVC        | For this sort of a simple application, MVC is more than enough. |
+|Architecture - MVC       | For this sort of a simple application, MVC is more than enough. |
+|Architecture - MVVM      | Experimenting (There are several ways to implement this too. I would like to start from Protocol oriented manner than going for improved ways which use a lot of language features and extra libraries. Await for this in a separate branch within the repository.
 Networking - Alamofire    | Check following list of files: <br/>- `Network\NetworkProtocol.swift` <br/>- `Network\NetworkClient.swift` <br/>- `Services\TwitterAPIService.swift`<br/>-  `Services\GoogleNaturalLangAPIService.swift`
 | Models                  | All the models used for the app reside within this folder. Almost all the models which are consumed by the Network Services are extending `Mappable` class from `ObjectMapper` library. You can find more details about it by visiting [ObjectMapper](https://github.com/tristanhimmelman/ObjectMapper) GitHub Project.
 | Views                   | Storyboards and all the other Nib files are included within this folder
 | Controllers             | You can find them on its folder `Controller`
 |App Preferences          | Used a simple Singleton class to keep the `NSUserDefaults` managed.
 |Authentication           | For Twitter web API, to fetch the Twitter timeline for a given screen-name it uses Bearer Token. In order to get the Bearer Token we need two more needs which is identical for our Twitter App, which are Consumer API Key and the Secret Key. <br/> Then for Google Natural Language we need to have that service enabled in Google Cloud console and have a valid Google API Key. Non of these keys are stored within the project sourcecode. 
-|Tests                    | UnitTests has full coverage for all the API calls `TwitterAPIService` and `GoogleNaturalLangAPIService`. Would love to write UI Tests, but not enough time I could find.
+|Tests                    | UnitTests - Full coverage for all the API calls `TwitterAPIService` and `GoogleNaturalLangAPIService`. UITests - I would love to write UI Tests (I already did while I was researching UI Tests for Xamarin.Forms using Xamarin.UITest and running them on AppCenter), but not enough time I could find for this project.
 
 
 #### Note:
