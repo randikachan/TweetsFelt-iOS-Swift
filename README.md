@@ -78,7 +78,7 @@ What is the key for GoogleWebAPIKey
 Specifics                 | Details
 --------------------------|------------------------------------------------------------------------
 |Architecture - MVC       | For this sort of a simple application, MVC is more than enough. |
-|Architecture - MVVM      | Experimenting (There are several ways to implement this too. I would like to start from Protocol oriented manner than going for improved ways which use a lot of language features and extra libraries. Await for this in a separate branch within the repository.
+|Architecture - MVVM      | Experimenting (There are several ways to implement this too. I would like to start from Protocol oriented manner than going for improved ways which use a lot of language features and extra libraries. Await for this in a separate branch within the repository. I've been already using MVVM for Xamarin and it makes life more easier, I would try out iOS too, soon.
 Networking - Alamofire    | Check following list of files: <br/>- `Network\NetworkProtocol.swift` <br/>- `Network\NetworkClient.swift` <br/>- `Services\TwitterAPIService.swift`<br/>-  `Services\GoogleNaturalLangAPIService.swift`
 | Models                  | All the models used for the app reside within this folder. Almost all the models which are consumed by the Network Services are extending `Mappable` class from `ObjectMapper` library. You can find more details about it by visiting [ObjectMapper](https://github.com/tristanhimmelman/ObjectMapper) GitHub Project.
 | Views                   | Storyboards and all the other Nib files are included within this folder
