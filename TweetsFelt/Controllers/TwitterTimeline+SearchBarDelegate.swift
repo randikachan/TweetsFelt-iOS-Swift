@@ -23,24 +23,7 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
             return
         }
         
-        // Fetch Twitter timeline for the given screenname
-        let twitterAPIService = TwitterAPIService.shared
-        twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: searchText)) { (tweetObj, tweetsArr, errorResponse) in
-            // Clear out the Search VC
-            self.setupErrorneousSearchVCWith(statusLabel: "")
-            
-            if let tweetsArray = tweetsArr {
-                self.tableView.isHidden = false
-                self.searchResultTweetsArr = tweetsArray
-            } else if errorResponse != nil {
-                if let errorMessage = errorResponse?.twitterError?.errors![0].message {
-                    self.setupErrorneousSearchVCWith(statusLabel: errorMessage)
-                } else if errorResponse?.error != nil {
-                    print("Search error: " + (errorResponse?.error?.localizedDescription)!)
-                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)
-                }
-            }
-        }
+        fetchTwitterTimelineFor(screenName: searchText)
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
