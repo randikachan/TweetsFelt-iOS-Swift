@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetTableViewCell: UITableViewCell {
+class TweetTableViewCell: UITableViewCell, TweetTableViewCellDelegate {
 
     // To identify the cell and update the content accordingly
     var delegate: TweetTableViewCellDelegate?
@@ -49,7 +49,9 @@ class TweetTableViewCell: UITableViewCell {
     @IBAction func analyzeSentimentCellButtonTapped(_ sender: UIButton) {
         // call delegate
         delegate?.analyzeDocumentSentimentAndUpdate(self, completion: { (documentSentiment) in
-            self.tweet?.sentiment = documentSentiment
+            if self.tweet == nil { return }
+            self.tweet!.sentiment = documentSentiment
+            self.sentimentThumbLbl.text = self.tweet!.sentiment?.getMood()
         })
     }
     
@@ -62,6 +64,7 @@ class TweetTableViewCell: UITableViewCell {
         self.sentimentThumbLbl.text = tweet.sentiment?.getMood()
         self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         self.clipsToBounds = true
+        self.delegate = self
 
         self.tag = tag
     }
