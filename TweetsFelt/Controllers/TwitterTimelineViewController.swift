@@ -27,7 +27,12 @@ class TwitterTimelineViewController: UIViewController {
     
     var searchResultTweetsArr: [Tweet] = [] {
         didSet {
-            self.tableView.reloadData()
+            if (self.searchResultTweetsArr.count > 0) {
+                self.tableView.reloadData()
+                self.tableView.isHidden = false
+            } else {
+                self.tableView.isHidden = true
+            }
         }
     }
     
@@ -47,11 +52,12 @@ class TwitterTimelineViewController: UIViewController {
         self.tableView.register(tableViewHeaderCellNib, forCellReuseIdentifier: "timelineHeaderCell")
         
         // Setup initial Search View UI state
-        activityIndicator.isHidden = false
-        tableView.isHidden = true
-        self.statusLbl.text = "Search for a Twitter Screen Name to View and Feel its Timeline!"
+        self.searchResultTweetsArr = viewModel.searchResultTweetsArr ?? []
         
-        initializeAPIToken_delete_later()
+        viewModel.initializeAPIToken {
+            self.activityIndicator.isHidden = !self.viewModel.isLoading
+            self.statusLbl.text = self.viewModel.statusLblText
+        }
     }
 }
 
@@ -92,16 +98,4 @@ extension TwitterTimelineViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
-
-// MARK - Network Service Calls
-
-extension TwitterTimelineViewController {
-
-    func initializeAPIToken_delete_later() {
-    }
-    
-    func fetchTwitterTimelineFor_delete_later(screenName: String) {
-    }
-
 }

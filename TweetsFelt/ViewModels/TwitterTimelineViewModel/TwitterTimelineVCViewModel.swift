@@ -14,63 +14,56 @@ class TwitterTimelineVCViewModel {
     let keys = TweetsFeltKeys()
     
     // MARK: - Properties
-    private var searchText: String? {
-        didSet {
-            guard let searchString = searchText else { return }
-            self.fetchTwitterTimelineFor(screenName: searchString)
-        }
-    }
-    private var searchResultTweetsArr: [Tweet]? {
-        didSet {
-            guard let tweetsArr = searchResultTweetsArr else { return }
-            self.didFinishFetchTwitterTimelin(tweetsArr: tweetsArr)
-        }
-    }
+    private var searchText: String?
+    
+    var searchResultTweetsArr: [Tweet]?
 
     var error: BaseAPIError? {
         didSet {
-            guard let err = error else { return }
-            self.onErrorShowAlert(error: err)
+            self.decodeErrorMsg()
         }
     }
 
-    var isLoading: Bool = false {
-        didSet {
-            self.updateLoadingStatus()
-        }
-    }
+    var isLoading: Bool = false
     
-    // MARK: - Constructor
+    var statusLblText: String?
+    
+    // MARK - Constructor
     init() {
-        self.initializeAPIToken()
+        self.decodeErrorMsg()
     }
-    
 }
 
 // MARK: - Network call
 extension TwitterTimelineVCViewModel {
     
-    func initializeAPIToken() {
+    func initializeAPIToken(completion: @escaping () -> Void) {
         // Check if Bearer token exists or not
         if AppPreferenceService.shared.getBearerToken() == nil {
+            self.isLoading = true
             // If not get Bearer token and save it
             let twitterAPIService = TwitterAPIService.shared
-            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
+            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, errorResponse) in
+                self.isLoading = false
+                
                 print("completed: \(String(describing: tokenObject?.toJSONString()))")
-                // self.activityIndicator.isHidden = true
                 
                 // Save bearer token for later use
                 if let token = tokenObject?.access_token {
                     AppPreferenceService.shared.saveBearerToken(bearerToken: token)
+                } else if let baseError = errorResponse {
+                    self.error = baseError
                 }
-                // self.activityIndicator.isHidden = true
+                
+                completion()
             }
         } else {
-            // self.activityIndicator.isHidden = true
+            self.isLoading = false
+            completion()
         }
     }
     
-    func fetchTwitterTimelineFor(screenName: String) {
+    func fetchTwitterTimelineFor(screenName: String, completion: @escaping (Bool) -> Void) {
         // Fetch Twitter timeline for the given screenname
         let twitterAPIService = TwitterAPIService.shared
         twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: screenName)) { (tweetObj, tweetsArr, errorResponse) in
@@ -78,35 +71,45 @@ extension TwitterTimelineVCViewModel {
             // self.setupErrorneousSearchVCWith(statusLabel: "")
             
             if let tweetsArray = tweetsArr {
-                // self.tableView.isHidden = false
                 self.searchResultTweetsArr = tweetsArray
-            } else if errorResponse != nil {
-                if let errorMessage = errorResponse?.twitterError?.errors![0].message {
-                    // self.setupErrorneousSearchVCWith(statusLabel: errorMessage)
-                } else if errorResponse?.error != nil {
-                    print("Search error: " + (errorResponse?.error?.localizedDescription)!)
-                    // self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)
-                }
+                completion(true)
+            } else if let baseError = errorResponse {
+                self.error = baseError
+                completion(false)
             }
         }
     }
 }
 
+// Need to validate the idea of such a list of following Protocol methods for Interface Segration principal
 extension TwitterTimelineVCViewModel: TwitterTimelineNetworkProtocol {
-    func onErrorShowAlert(error: BaseAPIError) {
-        
-    }
+    func onErrorShowAlert(error: BaseAPIError) { }
     
-    func updateLoadingStatus() {
-        
-    }
+    func onErrorShowAlert(error: BaseAPIError, errorLabel: UILabel) { }
     
-    func didFinishGetBearerToken() {
-        
-    }
+    func updateLoadingStatus() { }
     
-    func didFinishFetchTwitterTimelin(tweetsArr: [Tweet]) {
-        
-    }
+    func didFinishGetBearerToken() { }
+    
+    func didFinishFetchTwitterTimelin(tweetsArr: [Tweet]) { }
 
+}
+
+extension TwitterTimelineVCViewModel {
+ 
+    func decodeErrorMsg() {
+        if let errorMessage = self.error?.googleNLPError?.error?.message {
+            self.statusLblText = errorMessage
+            return
+        } else if let errorMessage = self.error?.twitterError?.errors![0].message {
+            self.statusLblText = errorMessage
+            return
+        } else if let error = self.error?.error {
+            print("Localized Error: " + (error.localizedDescription))
+            self.statusLblText = error.localizedDescription
+            return
+        }
+        
+        self.statusLblText = "Search for a Twitter Screen Name to View and Feel its Timeline!"
+    }
 }

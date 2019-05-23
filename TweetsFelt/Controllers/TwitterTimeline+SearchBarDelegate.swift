@@ -23,7 +23,13 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
             return
         }
         
-        fetchTwitterTimelineFor_delete_later(screenName: searchText)
+        viewModel.fetchTwitterTimelineFor(screenName: searchText) { (success) in
+            if success {
+                self.searchResultTweetsArr = self.viewModel.searchResultTweetsArr ?? []
+            } else if let statusMsg = self.viewModel.statusLblText {
+                self.setupErrorneousSearchVCWith(statusLabel: statusMsg)
+            }
+        }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
