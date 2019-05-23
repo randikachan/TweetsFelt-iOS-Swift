@@ -184,6 +184,7 @@
 				202DD4C42291517F0052F804 /* Controllers */,
 				202DD4C9229151F50052F804 /* Models */,
 				202DD4C6229151CF0052F804 /* Views */,
+				2078688D229648C60073AA43 /* ViewModels */,
 				202DD4CA2291523D0052F804 /* Services */,
 				202DD4CB229152D80052F804 /* Enums */,
 				202DD4C8229151E70052F804 /* Resources */,
@@ -260,15 +261,7 @@
 		202DD4C9229151F50052F804 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				202DD4D02291532D0052F804 /* Endpoint.swift */,
-				20F0CB0B22934E0F00F19005 /* ErrorModels */,
-				204C66AB2292004A00CBAA2D /* TwitterUser.swift */,
-				204C66AD2292038400CBAA2D /* Tweet.swift */,
-				204C66AF2292046700CBAA2D /* TwitterTimeline.swift */,
-				2090A69F22928A40007FBF1C /* TokenResponse.swift */,
-				2090A6A52292A597007FBF1C /* InvalidateTokenResponse.swift */,
-				20F0CB05229347D100F19005 /* GoogleNLPDocument.swift */,
-				20F0CB0922934A4200F19005 /* GoogleNLDocumentSentiment.swift */,
+				2078688E2296495A0073AA43 /* API */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,6 +293,29 @@
 				202DD4D52291628A0052F804 /* NetworkClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		2078688D229648C60073AA43 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		2078688E2296495A0073AA43 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				202DD4D02291532D0052F804 /* Endpoint.swift */,
+				20F0CB0B22934E0F00F19005 /* ErrorModels */,
+				204C66AB2292004A00CBAA2D /* TwitterUser.swift */,
+				204C66AD2292038400CBAA2D /* Tweet.swift */,
+				204C66AF2292046700CBAA2D /* TwitterTimeline.swift */,
+				2090A69F22928A40007FBF1C /* TokenResponse.swift */,
+				2090A6A52292A597007FBF1C /* InvalidateTokenResponse.swift */,
+				20F0CB05229347D100F19005 /* GoogleNLPDocument.swift */,
+				20F0CB0922934A4200F19005 /* GoogleNLDocumentSentiment.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		2090A6AD2292D7AD007FBF1C /* TweetTableViewCell */ = {
