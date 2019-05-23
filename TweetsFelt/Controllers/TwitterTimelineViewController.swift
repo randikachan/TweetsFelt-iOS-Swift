@@ -21,7 +21,11 @@ class TwitterTimelineViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var statusLbl: UILabel!
     
-    var searchResultTweetsArr: [Tweet] = []
+    var searchResultTweetsArr: [Tweet] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     lazy var tapRecognizer: UITapGestureRecognizer = {
         var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
@@ -43,29 +47,13 @@ class TwitterTimelineViewController: UIViewController {
         tableView.isHidden = true
         self.statusLbl.text = "Search for a Twitter Screen Name to View and Feel its Timeline!"
         
-        // Check if Bearer token exists or not
-        if AppPreferenceService.shared.getBearerToken() == nil {
-            // If not get Bearer token and save it
-            let twitterAPIService = TwitterAPIService.shared
-            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
-                print("completed: \(String(describing: tokenObject?.toJSONString()))")
-                self.activityIndicator.isHidden = true
-                
-                // Save bearer token for later use
-                if let token = tokenObject?.access_token {
-                    AppPreferenceService.shared.saveBearerToken(bearerToken: token)
-                }
-                self.activityIndicator.isHidden = true
-            }
-        } else {
-            self.activityIndicator.isHidden = true
-        }
+        initializeAPIToken()
     }
 }
 
-// MARK: - UITableView
+// MARK: - UITableView DataSource
 
-extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDelegate {
+extension TwitterTimelineViewController: UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -91,6 +79,11 @@ extension TwitterTimelineViewController: UITableViewDataSource, UITableViewDeleg
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
     }
+    
+}
+
+// MARK: - UITableView Delegate
+extension TwitterTimelineViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -123,4 +116,51 @@ extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
             }
         }
     }
+}
+
+// MARK - Network Service Calls
+
+extension TwitterTimelineViewController {
+    
+    func initializeAPIToken() {
+        // Check if Bearer token exists or not
+        if AppPreferenceService.shared.getBearerToken() == nil {
+            // If not get Bearer token and save it
+            let twitterAPIService = TwitterAPIService.shared
+            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
+                print("completed: \(String(describing: tokenObject?.toJSONString()))")
+                self.activityIndicator.isHidden = true
+                
+                // Save bearer token for later use
+                if let token = tokenObject?.access_token {
+                    AppPreferenceService.shared.saveBearerToken(bearerToken: token)
+                }
+                self.activityIndicator.isHidden = true
+            }
+        } else {
+            self.activityIndicator.isHidden = true
+        }
+    }
+    
+    func fetchTwitterTimelineFor(screenName: String) {
+        // Fetch Twitter timeline for the given screenname
+        let twitterAPIService = TwitterAPIService.shared
+        twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: screenName)) { (tweetObj, tweetsArr, errorResponse) in
+            // Clear out the Search VC
+            self.setupErrorneousSearchVCWith(statusLabel: "")
+            
+            if let tweetsArray = tweetsArr {
+                self.tableView.isHidden = false
+                self.searchResultTweetsArr = tweetsArray
+            } else if errorResponse != nil {
+                if let errorMessage = errorResponse?.twitterError?.errors![0].message {
+                    self.setupErrorneousSearchVCWith(statusLabel: errorMessage)
+                } else if errorResponse?.error != nil {
+                    print("Search error: " + (errorResponse?.error?.localizedDescription)!)
+                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)
+                }
+            }
+        }
+    }
+
 }
