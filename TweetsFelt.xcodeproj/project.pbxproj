@@ -274,7 +274,6 @@
 				2078688E2296495A0073AA43 /* API */,
 				2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */,
 				2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */,
-				204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,6 +307,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		204ECCC422972A6E0059A9D0 /* TwitterTimelineViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */,
+				2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */,
+			);
+			path = TwitterTimelineViewModel;
+			sourceTree = "<group>";
+		};
 		2078688E2296495A0073AA43 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,7 +335,7 @@
 		2078689322964BC90073AA43 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */,
+				204ECCC422972A6E0059A9D0 /* TwitterTimelineViewModel */,
 				2078689622964C3A0073AA43 /* TwitterTimelineCellViewModel.swift */,
 			);
 			path = ViewModels;
