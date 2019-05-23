@@ -28,6 +28,8 @@
 		204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AB2292004A00CBAA2D /* TwitterUser.swift */; };
 		204C66AE2292038400CBAA2D /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AD2292038400CBAA2D /* Tweet.swift */; };
 		204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AF2292046700CBAA2D /* TwitterTimeline.swift */; };
+		2078689022964A210073AA43 /* TwitterTimelineVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */; };
+		2078689222964A410073AA43 /* TwitterTimelineCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */; };
 		2090A6A022928A40007FBF1C /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A69F22928A40007FBF1C /* TokenResponse.swift */; };
 		2090A6A22292971B007FBF1C /* AppPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6A12292971B007FBF1C /* AppPreferenceService.swift */; };
 		2090A6A422929798007FBF1C /* AppPreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6A322929798007FBF1C /* AppPreferenceKeys.swift */; };
@@ -97,6 +99,8 @@
 		204C66AB2292004A00CBAA2D /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		204C66AD2292038400CBAA2D /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		204C66AF2292046700CBAA2D /* TwitterTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
+		2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCModel.swift; sourceTree = "<group>"; };
+		2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineCellModel.swift; sourceTree = "<group>"; };
 		2090A69F22928A40007FBF1C /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		2090A6A12292971B007FBF1C /* AppPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceService.swift; sourceTree = "<group>"; };
 		2090A6A322929798007FBF1C /* AppPreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKeys.swift; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				2078688E2296495A0073AA43 /* API */,
+				2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */,
+				2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				204C66AE2292038400CBAA2D /* Tweet.swift in Sources */,
 				2090A6AF2292E974007FBF1C /* Helper.swift in Sources */,
 				2090A6A62292A597007FBF1C /* InvalidateTokenResponse.swift in Sources */,
+				2078689022964A210073AA43 /* TwitterTimelineVCModel.swift in Sources */,
 				20F0CB04229342A300F19005 /* GoogleNLPError.swift in Sources */,
 				202DD4DA229167380052F804 /* TwitterAPIService.swift in Sources */,
 				204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */,
@@ -621,6 +628,7 @@
 				202DD4D12291532D0052F804 /* Endpoint.swift in Sources */,
 				20F0CB0D22934EFA00F19005 /* BaseAPIError.swift in Sources */,
 				202DD496229137570052F804 /* AppDelegate.swift in Sources */,
+				2078689222964A410073AA43 /* TwitterTimelineCellModel.swift in Sources */,
 				2090A6A422929798007FBF1C /* AppPreferenceKeys.swift in Sources */,
 				202DD4D62291628A0052F804 /* NetworkClient.swift in Sources */,
 				2030DAF322947939003B5334 /* SettingsViewController.swift in Sources */,
