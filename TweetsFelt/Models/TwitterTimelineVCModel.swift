@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class TwitterTimelineVCModel {
+    
+    public let searchText: String
+    public var searchResultTweetsArr: [Tweet]   // subjected to change during the course of lifecycle of the VC
+    
+    public init(searchText: String, tweetsArr: [Tweet]) {
+        self.searchText = searchText
+        self.searchResultTweetsArr = tweetsArr
+    }
+}

@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class TwitterTimelineCellModel {
+    
+    let text: String
+    let sentiment: GoogleNLDocumentSentiment
+    
+    init(tweetText: String, sentiment: GoogleNLDocumentSentiment) {
+        self.text = tweetText
+        self.sentiment = sentiment
+    }
+}
