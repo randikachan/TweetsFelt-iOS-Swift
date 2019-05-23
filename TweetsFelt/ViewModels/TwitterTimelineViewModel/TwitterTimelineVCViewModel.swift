@@ -13,9 +13,6 @@ class TwitterTimelineVCViewModel {
 
     let keys = TweetsFeltKeys()
     
-    private let twitterAPIService: TwitterAPIService
-    private let googleNaturalLangAPIService: GoogleNaturalLangAPIService
-    
     // MARK: - Properties
     private var searchText: String? {
         didSet {
@@ -45,8 +42,7 @@ class TwitterTimelineVCViewModel {
     
     // MARK: - Constructor
     init() {
-        self.twitterAPIService = TwitterAPIService.shared
-        self.googleNaturalLangAPIService = GoogleNaturalLangAPIService.shared
+        self.initializeAPIToken()
     }
     
 }

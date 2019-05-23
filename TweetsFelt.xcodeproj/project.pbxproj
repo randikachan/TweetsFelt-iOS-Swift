@@ -29,6 +29,7 @@
 		204C66AE2292038400CBAA2D /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AD2292038400CBAA2D /* Tweet.swift */; };
 		204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AF2292046700CBAA2D /* TwitterTimeline.swift */; };
 		204ECCC322971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */; };
+		204ECCC6229733CF0059A9D0 /* TweetTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204ECCC5229733CF0059A9D0 /* TweetTableViewCellDelegate.swift */; };
 		2078689022964A210073AA43 /* TwitterTimelineVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */; };
 		2078689222964A410073AA43 /* TwitterTimelineCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */; };
 		2078689522964C0E0073AA43 /* TwitterTimelineVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */; };
@@ -103,6 +104,7 @@
 		204C66AD2292038400CBAA2D /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		204C66AF2292046700CBAA2D /* TwitterTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
 		204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineNetworkProtocol.swift; sourceTree = "<group>"; };
+		204ECCC5229733CF0059A9D0 /* TweetTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCModel.swift; sourceTree = "<group>"; };
 		2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineCellModel.swift; sourceTree = "<group>"; };
 		2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCViewModel.swift; sourceTree = "<group>"; };
@@ -316,6 +318,15 @@
 			path = TwitterTimelineViewModel;
 			sourceTree = "<group>";
 		};
+		204ECCC7229733F00059A9D0 /* TwitterTimelineCellViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2078689622964C3A0073AA43 /* TwitterTimelineCellViewModel.swift */,
+				204ECCC5229733CF0059A9D0 /* TweetTableViewCellDelegate.swift */,
+			);
+			path = TwitterTimelineCellViewModel;
+			sourceTree = "<group>";
+		};
 		2078688E2296495A0073AA43 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				204ECCC422972A6E0059A9D0 /* TwitterTimelineViewModel */,
-				2078689622964C3A0073AA43 /* TwitterTimelineCellViewModel.swift */,
+				204ECCC7229733F00059A9D0 /* TwitterTimelineCellViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -633,6 +644,7 @@
 				202DD4DF22917EAB0052F804 /* Keys.framework in Sources */,
 				20F0CB0A22934A4200F19005 /* GoogleNLDocumentSentiment.swift in Sources */,
 				204C66AE2292038400CBAA2D /* Tweet.swift in Sources */,
+				204ECCC6229733CF0059A9D0 /* TweetTableViewCellDelegate.swift in Sources */,
 				2090A6AF2292E974007FBF1C /* Helper.swift in Sources */,
 				2090A6A62292A597007FBF1C /* InvalidateTokenResponse.swift in Sources */,
 				2078689022964A210073AA43 /* TwitterTimelineVCModel.swift in Sources */,

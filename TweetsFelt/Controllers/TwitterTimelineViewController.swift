@@ -70,7 +70,7 @@ extension TwitterTimelineViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
         
-        cell.configureCellFor(tweet: self.searchResultTweetsArr[indexPath.item], delegate: self, tag: indexPath.item)
+        cell.configureCellFor(tweet: self.searchResultTweetsArr[indexPath.item], tag: indexPath.item)
         
         return cell
     }
@@ -91,34 +91,6 @@ extension TwitterTimelineViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - Custom UITableViewCell Delegate
-
-extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
-    
-    func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell) {
-        if let tweetTextContent = cell.tweetTextLbl.text {
-            // Activity Indicator
-            cell.activityIndicator.isHidden = false
-            
-            // Prepare the document and the API call
-            let googleAPIService = GoogleNaturalLangAPIService.shared
-            let documentRequest = googleAPIService.generateDocumentRequestData(content: tweetTextContent)
-            
-            googleAPIService.analyzeDocument(document: documentRequest) { (googleSentimentObj, googleSentimentArr, baseError) in
-                // Hide the activity Indicator
-                
-                cell.activityIndicator.isHidden = true
-                if googleSentimentObj != nil {
-                    self.searchResultTweetsArr[cell.tag].sentiment = googleSentimentObj?.documentSentiment
-                    cell.sentimentThumbLbl.text = googleSentimentObj?.documentSentiment?.getMood()
-                } else if baseError != nil {
-                    cell.sentimentThumbLbl.text = "⁉️"
-                }
-            }
-        }
     }
 }
 

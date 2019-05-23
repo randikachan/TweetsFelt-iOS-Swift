@@ -7,14 +7,13 @@
 //
 
 import UIKit
-protocol AnalyzeTweetContentCellDelegate {
-    func analyzeDocumentSentimentAndUpdate(_ cell: TweetTableViewCell)
-}
 
 class TweetTableViewCell: UITableViewCell {
 
     // To identify the cell and update the content accordingly
-    var delegate: AnalyzeTweetContentCellDelegate?
+    var delegate: TweetTableViewCellDelegate?
+    
+    var tweet: Tweet?
     
     @IBOutlet weak var sentimentThumbLbl: UILabel!
     @IBOutlet weak var tweetTextLbl: UILabel!
@@ -49,19 +48,21 @@ class TweetTableViewCell: UITableViewCell {
     
     @IBAction func analyzeSentimentCellButtonTapped(_ sender: UIButton) {
         // call delegate
-        delegate?.analyzeDocumentSentimentAndUpdate(self)
+        delegate?.analyzeDocumentSentimentAndUpdate(self, completion: { (documentSentiment) in
+            self.tweet?.sentiment = documentSentiment
+        })
     }
     
     // Customize and update the cell with data
-    func configureCellFor(tweet: Tweet, delegate: AnalyzeTweetContentCellDelegate?, tag: Int) {
+    func configureCellFor(tweet: Tweet, tag: Int) {
+        self.tweet = tweet
         self.sentimentThumbLbl.backgroundColor = UIColor.clear
         self.tweetTextLbl.backgroundColor = UIColor.clear
         self.tweetTextLbl.text = tweet.text
         self.sentimentThumbLbl.text = tweet.sentiment?.getMood()
         self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         self.clipsToBounds = true
-        
-        self.delegate = delegate
+
         self.tag = tag
     }
 
