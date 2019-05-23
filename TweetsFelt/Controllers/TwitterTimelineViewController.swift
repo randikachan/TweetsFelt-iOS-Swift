@@ -16,10 +16,14 @@ class TwitterTimelineViewController: UIViewController {
     
     let keys = TweetsFeltKeys()
     
+    // Mark - IBOutlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var statusLbl: UILabel!
+    
+    // Mark - ViewModel injection
+    let viewModel = TwitterTimelineVCViewModel()
     
     var searchResultTweetsArr: [Tweet] = [] {
         didSet {
@@ -47,7 +51,7 @@ class TwitterTimelineViewController: UIViewController {
         tableView.isHidden = true
         self.statusLbl.text = "Search for a Twitter Screen Name to View and Feel its Timeline!"
         
-        initializeAPIToken()
+        initializeAPIToken_delete_later()
     }
 }
 
@@ -121,46 +125,11 @@ extension TwitterTimelineViewController: AnalyzeTweetContentCellDelegate {
 // MARK - Network Service Calls
 
 extension TwitterTimelineViewController {
-    
-    func initializeAPIToken() {
-        // Check if Bearer token exists or not
-        if AppPreferenceService.shared.getBearerToken() == nil {
-            // If not get Bearer token and save it
-            let twitterAPIService = TwitterAPIService.shared
-            twitterAPIService.getBearerToken(api_key: keys.twitterConsumerAPIKey, api_secret: keys.twitterConsumerAPISecret) { (tokenObject, tokenArr, jsonError) in
-                print("completed: \(String(describing: tokenObject?.toJSONString()))")
-                self.activityIndicator.isHidden = true
-                
-                // Save bearer token for later use
-                if let token = tokenObject?.access_token {
-                    AppPreferenceService.shared.saveBearerToken(bearerToken: token)
-                }
-                self.activityIndicator.isHidden = true
-            }
-        } else {
-            self.activityIndicator.isHidden = true
-        }
+
+    func initializeAPIToken_delete_later() {
     }
     
-    func fetchTwitterTimelineFor(screenName: String) {
-        // Fetch Twitter timeline for the given screenname
-        let twitterAPIService = TwitterAPIService.shared
-        twitterAPIService.fetchUserTimelineFor(requestData: twitterAPIService.getRequestParameters(screen_name: screenName)) { (tweetObj, tweetsArr, errorResponse) in
-            // Clear out the Search VC
-            self.setupErrorneousSearchVCWith(statusLabel: "")
-            
-            if let tweetsArray = tweetsArr {
-                self.tableView.isHidden = false
-                self.searchResultTweetsArr = tweetsArray
-            } else if errorResponse != nil {
-                if let errorMessage = errorResponse?.twitterError?.errors![0].message {
-                    self.setupErrorneousSearchVCWith(statusLabel: errorMessage)
-                } else if errorResponse?.error != nil {
-                    print("Search error: " + (errorResponse?.error?.localizedDescription)!)
-                    self.setupErrorneousSearchVCWith(statusLabel: (errorResponse?.error?.localizedDescription)!)
-                }
-            }
-        }
+    func fetchTwitterTimelineFor_delete_later(screenName: String) {
     }
 
 }

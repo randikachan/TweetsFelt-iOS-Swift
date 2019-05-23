@@ -28,6 +28,7 @@
 		204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AB2292004A00CBAA2D /* TwitterUser.swift */; };
 		204C66AE2292038400CBAA2D /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AD2292038400CBAA2D /* Tweet.swift */; };
 		204C66B02292046700CBAA2D /* TwitterTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C66AF2292046700CBAA2D /* TwitterTimeline.swift */; };
+		204ECCC322971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */; };
 		2078689022964A210073AA43 /* TwitterTimelineVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */; };
 		2078689222964A410073AA43 /* TwitterTimelineCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */; };
 		2078689522964C0E0073AA43 /* TwitterTimelineVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */; };
@@ -101,6 +102,7 @@
 		204C66AB2292004A00CBAA2D /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		204C66AD2292038400CBAA2D /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		204C66AF2292046700CBAA2D /* TwitterTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimeline.swift; sourceTree = "<group>"; };
+		204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineNetworkProtocol.swift; sourceTree = "<group>"; };
 		2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCModel.swift; sourceTree = "<group>"; };
 		2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineCellModel.swift; sourceTree = "<group>"; };
 		2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCViewModel.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				2078688E2296495A0073AA43 /* API */,
 				2078688F22964A210073AA43 /* TwitterTimelineVCModel.swift */,
 				2078689122964A410073AA43 /* TwitterTimelineCellModel.swift */,
+				204ECCC222971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				204C66A222918F9400CBAA2D /* NetworkConstants.swift in Sources */,
 				2090A6A82292C919007FBF1C /* TwitterTimelineViewController.swift in Sources */,
 				2090A6A022928A40007FBF1C /* TokenResponse.swift in Sources */,
+				204ECCC322971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift in Sources */,
 				20F0CB08229348F200F19005 /* GoogleNaturalLangAPIService.swift in Sources */,
 				2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */,
 				2090A6AB2292D79F007FBF1C /* TweetTableViewCell.swift in Sources */,
