@@ -32,6 +32,8 @@
 		204ECCC6229733CF0059A9D0 /* TweetTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204ECCC5229733CF0059A9D0 /* TweetTableViewCellDelegate.swift */; };
 		2078689522964C0E0073AA43 /* TwitterTimelineVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */; };
 		2078689722964C3A0073AA43 /* TwitterTimelineCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078689622964C3A0073AA43 /* TwitterTimelineCellViewModel.swift */; };
+		207878F722990F2D00A61F07 /* TwitterTimeline+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207878F622990F2D00A61F07 /* TwitterTimeline+TableViewDelegate.swift */; };
+		207878F922990FC700A61F07 /* TwitterTimeline+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207878F822990FC700A61F07 /* TwitterTimeline+TableViewDataSource.swift */; };
 		2090A6A022928A40007FBF1C /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A69F22928A40007FBF1C /* TokenResponse.swift */; };
 		2090A6A22292971B007FBF1C /* AppPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6A12292971B007FBF1C /* AppPreferenceService.swift */; };
 		2090A6A422929798007FBF1C /* AppPreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6A322929798007FBF1C /* AppPreferenceKeys.swift */; };
@@ -105,6 +107,8 @@
 		204ECCC5229733CF0059A9D0 /* TweetTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		2078689422964C0E0073AA43 /* TwitterTimelineVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineVCViewModel.swift; sourceTree = "<group>"; };
 		2078689622964C3A0073AA43 /* TwitterTimelineCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineCellViewModel.swift; sourceTree = "<group>"; };
+		207878F622990F2D00A61F07 /* TwitterTimeline+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterTimeline+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		207878F822990FC700A61F07 /* TwitterTimeline+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterTimeline+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		2090A69F22928A40007FBF1C /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		2090A6A12292971B007FBF1C /* AppPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceService.swift; sourceTree = "<group>"; };
 		2090A6A322929798007FBF1C /* AppPreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKeys.swift; sourceTree = "<group>"; };
@@ -232,8 +236,7 @@
 		202DD4C42291517F0052F804 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2090A6A72292C919007FBF1C /* TwitterTimelineViewController.swift */,
-				20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */,
+				207878FA22990FEE00A61F07 /* TwitterTimelineViewController */,
 				2030DAF222947939003B5334 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -336,6 +339,17 @@
 				204ECCC7229733F00059A9D0 /* TwitterTimelineCellViewModel */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		207878FA22990FEE00A61F07 /* TwitterTimelineViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2090A6A72292C919007FBF1C /* TwitterTimelineViewController.swift */,
+				20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */,
+				207878F622990F2D00A61F07 /* TwitterTimeline+TableViewDelegate.swift */,
+				207878F822990FC700A61F07 /* TwitterTimeline+TableViewDataSource.swift */,
+			);
+			path = TwitterTimelineViewController;
 			sourceTree = "<group>";
 		};
 		2090A6AD2292D7AD007FBF1C /* TweetTableViewCell */ = {
@@ -626,6 +640,7 @@
 				204ECCC322971B140059A9D0 /* TwitterTimelineNetworkProtocol.swift in Sources */,
 				20F0CB08229348F200F19005 /* GoogleNaturalLangAPIService.swift in Sources */,
 				2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */,
+				207878F722990F2D00A61F07 /* TwitterTimeline+TableViewDelegate.swift in Sources */,
 				2090A6AB2292D79F007FBF1C /* TweetTableViewCell.swift in Sources */,
 				202DD4DF22917EAB0052F804 /* Keys.framework in Sources */,
 				20F0CB0A22934A4200F19005 /* GoogleNLDocumentSentiment.swift in Sources */,
@@ -640,6 +655,7 @@
 				202DD4D4229162140052F804 /* NetworkProtocol.swift in Sources */,
 				2078689522964C0E0073AA43 /* TwitterTimelineVCViewModel.swift in Sources */,
 				20E455B42296003700947432 /* Emojies.swift in Sources */,
+				207878F922990FC700A61F07 /* TwitterTimeline+TableViewDataSource.swift in Sources */,
 				204C66AC2292004A00CBAA2D /* TwitterUser.swift in Sources */,
 				202DD4D12291532D0052F804 /* Endpoint.swift in Sources */,
 				20F0CB0D22934EFA00F19005 /* BaseAPIError.swift in Sources */,

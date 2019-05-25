@@ -50,7 +50,7 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
     func initializeSearchVC() {
         dismissKeyboard()
         self.tableView.isHidden = true
-        self.activityIndicator.isHidden = false
+        self.activityIndicator.isHidden = !viewModel.isLoading
         self.statusLbl.text = ""
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
@@ -58,7 +58,7 @@ extension TwitterTimelineViewController: UISearchBarDelegate {
     // Finish up search VC state after a search query
     func setupErrorneousSearchVCWith(statusLabel: String) {
         self.tableView.isHidden = true
-        self.activityIndicator.isHidden = true
+        self.activityIndicator.isHidden = !viewModel.isLoading
         self.statusLbl.text = statusLabel
     }
 
