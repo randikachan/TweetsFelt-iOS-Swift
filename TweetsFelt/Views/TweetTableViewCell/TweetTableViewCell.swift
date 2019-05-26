@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetTableViewCell: UITableViewCell, TweetTableViewCellDelegate {
+class TweetTableViewCell: UITableViewCell {
 
     // To identify the cell and update the content accordingly
     var delegate: TweetTableViewCellDelegate?
@@ -56,7 +56,7 @@ class TweetTableViewCell: UITableViewCell, TweetTableViewCellDelegate {
     }
     
     // Customize and update the cell with data
-    func configureCellFor(tweet: Tweet, tag: Int) {
+    func configureCellFor(tweet: Tweet, tag: Int) {     // TODO <---- Either inject the ViewModel or the delegate. the delegate should carry the data of VM.
         self.tweet = tweet
         self.sentimentThumbLbl.backgroundColor = UIColor.clear
         self.tweetTextLbl.backgroundColor = UIColor.clear
@@ -64,7 +64,7 @@ class TweetTableViewCell: UITableViewCell, TweetTableViewCellDelegate {
         self.sentimentThumbLbl.text = tweet.sentiment?.getMood()
         self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7458261986)
         self.clipsToBounds = true
-        self.delegate = self
+//        self.delegate = self
 
         self.tag = tag
     }
