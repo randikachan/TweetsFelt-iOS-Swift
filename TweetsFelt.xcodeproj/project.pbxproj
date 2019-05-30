@@ -38,6 +38,7 @@
 		2090A6AF2292E974007FBF1C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6AE2292E974007FBF1C /* Helper.swift */; };
 		2090A6B522931276007FBF1C /* TimelineHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */; };
 		2090A6B622931276007FBF1C /* TimelineHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */; };
+		20A2607422A002C90008BBD7 /* AppPreferenceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2607322A002C90008BBD7 /* AppPreferenceServiceTests.swift */; };
 		20E455B42296003700947432 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E455B32296003700947432 /* Emojies.swift */; };
 		20F0CB0222932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */; };
 		20F0CB04229342A300F19005 /* GoogleNLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F0CB03229342A300F19005 /* GoogleNLPError.swift */; };
@@ -107,6 +108,7 @@
 		2090A6AE2292E974007FBF1C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2090A6B322931276007FBF1C /* TimelineHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		2090A6B422931276007FBF1C /* TimelineHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		20A2607322A002C90008BBD7 /* AppPreferenceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceServiceTests.swift; sourceTree = "<group>"; };
 		20E455B32296003700947432 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
 		20F0CB0122932CAD00F19005 /* TwitterTimeline+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterTimeline+SearchBarDelegate.swift"; sourceTree = "<group>"; };
 		20F0CB03229342A300F19005 /* GoogleNLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleNLPError.swift; sourceTree = "<group>"; };
@@ -195,9 +197,10 @@
 		202DD4A9229137580052F804 /* TweetsFeltTests */ = {
 			isa = PBXGroup;
 			children = (
-				202DD4AA229137580052F804 /* TweetsFeltTests.swift */,
 				202DD4AC229137580052F804 /* Info.plist */,
+				202DD4AA229137580052F804 /* TweetsFeltTests.swift */,
 				202954EB22943A790079806D /* GoogleNLPServiceTests.swift */,
+				20A2607322A002C90008BBD7 /* AppPreferenceServiceTests.swift */,
 			);
 			path = TweetsFeltTests;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 			files = (
 				202DD4AB229137580052F804 /* TweetsFeltTests.swift in Sources */,
 				202954EC22943A790079806D /* GoogleNLPServiceTests.swift in Sources */,
+				20A2607422A002C90008BBD7 /* AppPreferenceServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
